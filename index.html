@@ -450,16 +450,16 @@
           <div class="field"><label>Contact No.</label><input id="f-contact" value="+91 87665 83894" oninput="render()"></div>
           <div class="field"><label>Email</label><input id="f-email" value="sales@skatransformers.com" oninput="render()"></div>
           <div class="field"><label>GST Number</label><input id="f-gst" value="27ABRCS1298P1Z8" oninput="render()"></div>
-          <div class="field"><label>Reference No.</label><input id="f-refNo" value="SKA-ED-3DT/2025-26" oninput="render()"></div>
-          <div class="field"><label>Document Date</label><input id="f-date" type="date" value="2026-02-05" oninput="render()"></div>
-          <div class="field"><label>Applicable Standard</label><input id="f-standard" value="CSA/CAN C227.4 AND C2-M91" oninput="render()"></div>
+          <div class="field"><label>Reference </label><input id="f-refNo" value="" oninput="render()"></div>
+          <div class="field"><label>Document Date</label><input id="f-date" type="date" value="" oninput="render()"></div>
+          <div class="field"><label>Applicable Standard</label><input id="f-standard" value="" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Customer / Project Details</div>
         <div class="form-grid">
-          <div class="field"><label>Customer Name</label><input id="f-customer" placeholder="e.g. ABC Power Corp" oninput="render()"></div>
-          <div class="field"><label>Project Name</label><input id="f-project" placeholder="e.g. Substation Expansion" oninput="render()"></div>
-          <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="e.g. PO-2025-001" oninput="render()"></div>
+          <div class="field"><label>Customer Name</label><input id="f-customer" placeholder="" oninput="render()"></div>
+          <div class="field"><label>Project Name</label><input id="f-project" placeholder="" oninput="render()"></div>
+          <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="" oninput="render()"></div>
           <div class="field"><label>Revision No.</label><input id="f-rev" value="Rev. 0" oninput="render()"></div>
         </div>
 
@@ -468,7 +468,7 @@
           <div class="field"><label>Ambient Temperature</label><input id="f-ambTemp" value="Average ambient 40°C" oninput="render()"></div>
           <div class="field"><label>Altitude</label><input id="f-altitude" value="&lt;1000 meter" oninput="render()"></div>
           <div class="field"><label>Location</label><input id="f-location" value="Outdoor" oninput="render()"></div>
-          <div class="field"><label>Transformer Type</label><input id="f-transType" value="Liquid Filled Distribution Transformer" oninput="render()"></div>
+          <div class="field"><label>Transformer Type</label><input id="f-transType" value="" oninput="render()"></div>
         </div>
       </div>
 
@@ -476,8 +476,8 @@
       <div id="tab-ratings" class="tab-pane">
         <div class="section-heading">Electrical Ratings</div>
         <div class="form-grid">
-          <div class="field"><label>Power Rating</label><input id="f-power" value="3MVA" oninput="render()"></div>
-          <div class="field"><label>Cooling Class</label><input id="f-cooling" value="KNAN (FR3 - oil)" oninput="render()"></div>
+          <div class="field"><label>Power Rating</label><input id="f-power" value="" oninput="render()"></div>
+          <div class="field"><label>Cooling Class</label><input id="f-cooling" value="" oninput="render()"></div>
           <div class="field"><label>Temperature Rise</label><input id="f-tempRise" value="65°C" oninput="render()"></div>
           <div class="field"><label>Frequency</label><input id="f-freq" value="60 Hz" oninput="render()"></div>
           <div class="field"><label>Phases</label>
@@ -486,9 +486,9 @@
               <option value="1 Phase">1 Phase</option>
             </select>
           </div>
-          <div class="field"><label>High Voltage (H) Winding</label><input id="f-hv" value="25kV" oninput="render()"></div>
-          <div class="field"><label>Low Voltage (X &amp; X0) Winding</label><input id="f-lv" value="600V" oninput="render()"></div>
-          <div class="field"><label>Impedance (%)</label><input id="f-impedance" value="5.75% (Tol: ±7.5%)" oninput="render()"></div>
+          <div class="field"><label>High Voltage (H) Winding</label><input id="f-hv" value="" oninput="render()"></div>
+          <div class="field"><label>Low Voltage (X &amp; X0) Winding</label><input id="f-lv" value="" oninput="render()"></div>
+          <div class="field"><label>Impedance (%)</label><input id="f-impedance" value="% (Tol: ±7.5%" oninput="render()"></div>
           <div class="field span-2"><label>De-Energized Tap Changer</label><input id="f-tapChanger" value="5 position, 4 Steps, ±2.5% 25kV, BIL 150kV, 75A" oninput="render()"></div>
           <div class="field"><label>Efficiency Standard</label><input id="f-eff" value="CAN/CSAC802" oninput="render()"></div>
           <div class="field"><label>Service Voltage (HV)</label><input id="f-svcVoltHV" placeholder="e.g. 24.9kV" oninput="render()"></div>
@@ -528,20 +528,16 @@
             <select id="f-windMat" onchange="render()">
               <option value="Copper" selected>Copper</option>
               <option value="Aluminium">Aluminium</option>
-              <option value="Copper (HV) / Aluminium (LV)">Copper HV / Aluminium LV</option>
+              
             </select>
           </div>
-          <div class="field"><label>Core Material</label><input id="f-coreMat" value="CRGO MOH and better" oninput="render()"></div>
-          <div class="field"><label>Vector Group</label><input id="f-vectorGroup" value="Dyn1" oninput="render()"></div>
-          <div class="field"><label>Insulation Class</label><input id="f-insClass" placeholder="e.g. Class F" oninput="render()"></div>
+          <div class="field"><label>Core Material</label><input id="f-coreMat" value="CRGO M4 and better" oninput="render()"></div>
+          <div class="field"><label>Vector Group</label><input id="f-vectorGroup" value="" oninput="render()"></div>
+          <div class="field"><label>Insulation Class</label><input id="f-insClass" placeholder="" oninput="render()"></div>
         </div>
 
-        <div class="section-heading">Winding Resistance &amp; Turns Ratio</div>
-        <div class="form-grid cols-3">
-          <div class="field"><label>HV Winding Resistance (Ω)</label><input id="f-hvRes" placeholder="e.g. 1.25 Ω" oninput="render()"></div>
-          <div class="field"><label>LV Winding Resistance (Ω)</label><input id="f-lvRes" placeholder="e.g. 0.003 Ω" oninput="render()"></div>
-          <div class="field"><label>Turns Ratio</label><input id="f-turnsRatio" placeholder="e.g. 41.67 : 1" oninput="render()"></div>
-        </div>
+        
+        
       </div>
 
       <!-- ── TAB: Bushings ── -->
@@ -552,8 +548,8 @@
         </div>
         <div class="form-grid">
           <div class="field"><label>Surge Arrester Standard</label><input id="f-surgeStd" value="ANSI/IEEE C62.11" oninput="render()"></div>
-          <div class="field"><label>MCOV Voltage</label><input id="f-mcov" value="18 kV (MCOV)" oninput="render()"></div>
-          <div class="field"><label>Surge Arrester Type</label><input id="f-surgeType" value="Elastimold Type ESA elbow surge arrester" oninput="render()"></div>
+          <div class="field"><label>MCOV Voltage</label><input id="f-mcov" value="" oninput="render()"></div>
+          <div class="field"><label>Surge Arrester Type</label><input id="f-surgeType" value="" oninput="render()"></div>
           <div class="field"><label>Surge Arrester Class</label><input id="f-surgeClass" value="Class 25 kV" oninput="render()"></div>
         </div>
 
@@ -576,8 +572,8 @@
         <div class="section-heading">Tank Specification</div>
         <div class="form-grid cols-1">
           <div class="field"><label>Tank Standard</label><input id="f-tankStd" value="CSA/CAN C227.4" oninput="render()"></div>
-          <div class="field"><label>Tank Description</label><input id="f-tankDesc" value="MS Tank with Detachable Radiator, Top Cover with Man Hole" oninput="render()"></div>
-          <div class="field"><label>Radiator</label><input id="f-radiator" value="Detachable Radiator with Shut-Off Valve" oninput="render()"></div>
+          <div class="field"><label>Tank Description</label><input id="f-tankDesc" value="" oninput="render()"></div>
+          <div class="field"><label>Radiator</label><input id="f-radiator" value="" oninput="render()"></div>
           <div class="field"><label>Paint / Finish</label><input id="f-paint" value="ANSI 61 Grey" oninput="render()"></div>
         </div>
 
@@ -700,33 +696,11 @@ function removeLogo() {
 }
 
 let accessories = [
-  "SS Rating and Diagram Plate",
-  "Surge Arrestor",
-  "Key Operated Locking System to Compartments and Door to Operate 110 Degree",
-  "Liquid Temperature Thermometer with a Set of Contacts",
-  "Liquid Level Gauge with a Set of Contacts",
-  "High Flow Decompression Vent, VIAT type with Normally Open Auxiliary Contact",
-  "De-Energized Tap Changer",
-  "Safety Valve",
-  "Oil Sampling Valve",
-  "Lifting Hooks",
-  "Filling Cap",
-  "Relay and Sudden Pressure Increase with Dry Contact",
-  "Vacuum Pressure Indicator",
-  "Hinged Control Box",
-  "Earthing Terminals",
-  "Detachable Radiators with Shut-Off Valves",
-  "Earthing Pads",
-  "4/0 AWG Grounding Conductors",
-  "Shock Indicator"
+ 
 ];
 
 let notes = [
-  "Transformer will be made as per given specification and accessories mentioned in GTP.",
-  "Any deviation in above specification will be provided with additional cost.",
-  "GTP & GA approval shall be within one week.",
-  "Foundation drawing shall be provided by customer if available.",
-  "Price variation clause will be applicable from time to time due to Copper and CRGO price variation."
+ 
 ];
 
 /* ─── TABS ─── */
