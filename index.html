@@ -533,14 +533,12 @@
       <div id="tab-bushings" class="tab-pane">
         <div class="section-heading">High Voltage Bushings</div>
         <div class="form-grid cols-1">
-          <div class="field"><label>HV Bushing Type</label><input id="f-hvBush" value="" oninput="render()"></div>
+          <div class="field"><label>LV Bushing Class</label><input id="f-hvBush" value="" oninput="render()"></div>
         </div>
         <div class="form-grid">
-          <div class="field"><label>Surge Arrester Standard</label><input id="f-surgeStd" value="" oninput="render()"></div>
-          <div class="field"><label>MCOV Voltage</label><input id="f-mcov" value="" oninput="render()"></div>
-          <div class="field"><label>Surge Arrester Type</label><input id="f-surgeType" value="" oninput="render()"></div>
-          <div class="field"><label>Surge Arrester Class</label><input id="f-surgeClass" value="" oninput="render()"></div>
-        </div>
+          <div class="field"><label>LV Bushing Current Rating</label><input id="f-surgeStd" value="" oninput="render()"></div>
+          <div class="field"><label>LV Bushing Type</label><input id="f-mcov" value="" oninput="render()"></div>
+         </div>
 
         <div class="section-heading">Low Voltage Bushings</div>
         <div class="form-grid">
@@ -913,14 +911,12 @@ function render() {
       ${row('3a.3','Turns Ratio:', g('f-turnsRatio'))}
 
       ${secHdr('4','Bushings')}
-      ${row('4.1','High Voltage (H) Bushing:', g('f-hvBush'))}
-      ${row('4.2','Surge Arrester Standard:', g('f-surgeStd'))}
-      ${row('4.2.1','MCOV Voltage:', g('f-mcov'))}
-      ${row('4.2.2','Surge Arrester Class:', g('f-surgeClass'))}
-      ${row('4.2.3','Surge Arrester Type:', g('f-surgeType'))}
-      ${row('4.3','LV Bushing: ', g('f-lvBushType'))}
-      ${row('4.4','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-      ${row('4.5','Internal Current Limiting Fuse:', g('f-fuse'))}
+      ${row('4.1','HV Bushing Class:', g('f-hvBush'))}
+      ${row('4.2','HV Bushing Current Rating:', g('f-surgeStd'))}
+      ${row('4.3','HV Bushing Type', g('f-mcov'))}
+      ${row('4.4','LV Bushing: ', g('f-lvBushType'))}
+      ${row('4.5','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
+      ${row('4.6','Internal Current Limiting Fuse:', g('f-fuse'))}
 
       ${secHdr('5','Tank, Oil & Finish')}
       ${row('5.1','Tank Standard:', g('f-tankStd'))}
