@@ -424,23 +424,7 @@
     <div class="form-body">
 
       <!-- ── TAB: Company ── -->
-      <div id="tab-company" class="tab-pane active">
-        <div class="section-heading">Company Logo</div>
-        <div class="logo-upload-area" id="logoUploadArea" onclick="document.getElementById('logoFileInput').click()">
-          <div class="logo-preview-thumb" id="logoThumb">
-            <span>No logo</span>
-          </div>
-          <div class="logo-upload-info">
-            <strong>Company Logo</strong>
-            <span>PNG, JPG, SVG — shown in document header<br>Recommended: square format, transparent bg</span>
-          </div>
-          <div class="logo-upload-btns" onclick="event.stopPropagation()">
-            <button class="btn-upload" onclick="document.getElementById('logoFileInput').click()">⬆ Upload</button>
-            <button class="btn-remove-logo" id="btnRemoveLogo" style="display:none" onclick="removeLogo()">✕ Remove</button>
-          </div>
-        </div>
-        <input type="file" id="logoFileInput" accept="image/*" style="display:none" onchange="handleLogoUpload(event)">
-       <img src="skalogo.webp" width="150">
+    
 
         <div class="section-heading">Company Details</div>
         <div class="form-grid cols-1">
