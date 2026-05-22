@@ -844,7 +844,8 @@ function render() {
   <div class="gtp-doc" id="gtpDoc">
 
     <div class="gtp-header">
-      <div class="gtp-logo-box">${logoDataURL ? `<img src="${logoDataURL}" alt="Company Logo">` : escapeHtml(g('f-companyName').split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase() || 'LOGO')}</div>
+    <img src="images/logo.png" width="150">
+    //  <div class="gtp-logo-box">${logoDataURL ? `<img src="${logoDataURL}" alt="Company Logo">` : escapeHtml(g('f-companyName').split(' ').map(w=>w[0]).join('').slice(0,3).toUpperCase() || 'LOGO')}</div>
       <div class="gtp-company-block">
         <div class="gtp-cname">${escapeHtml(g('f-companyName'))}</div>
         <div class="gtp-cdetails">
