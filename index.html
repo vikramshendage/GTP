@@ -441,7 +441,7 @@
           <div class="field"><label>GST Number</label><input id="f-gst" value="27ABRCS1298P1Z8" oninput="render()"></div>
           <div class="field"><label>Reference No.</label><input id="f-refNo" value="" oninput="render()"></div>
           <div class="field"><label>Document Date</label><input id="f-date" type="date" value="" oninput="render()"></div>
-          <div class="field"><label>Applicable Standard</label><input id="f-standard" value="CSA/CAN C227.4 " oninput="render()"></div>
+          <div class="field"><label>Applicable Standard</label><input id="f-standard" placeholder="CSA/CAN C227.4 " oninput="render()"></div>
         </div>
 
         <div class="section-heading">Customer / Project Details</div>
@@ -456,8 +456,8 @@
         <div class="form-grid">
           <div class="field"><label>Ambient Temperature</label><input id="f-ambTemp" value="Average ambient 40°C" oninput="render()"></div>
           <div class="field"><label>Altitude</label><input id="f-altitude" value="&lt;1000 meter" oninput="render()"></div>
-          <div class="field"><label>Location</label><input id="f-location" value="Outdoor" oninput="render()"></div>
-          <div class="field"><label>Transformer Type</label><input id="f-transType" value="Liquid Filled Distribution Transformer" oninput="render()"></div>
+          <div class="field"><label>Location</label><input id="f-location" placeholder="Outdoor" oninput="render()"></div>
+          <div class="field"><label>Transformer Type</label><input id="f-transType" placeholder="Liquid Filled Distribution Transformer" oninput="render()"></div>
         </div>
       </div>
 
@@ -465,10 +465,10 @@
       <div id="tab-ratings" class="tab-pane">
         <div class="section-heading">Electrical Ratings</div>
         <div class="form-grid">
-          <div class="field"><label>Power Rating</label><input id="f-power" value="" oninput="render()"></div>
-          <div class="field"><label>Cooling Class</label><input id="f-cooling" value="" oninput="render()"></div>
-          <div class="field"><label>Temperature Rise</label><input id="f-tempRise" value="65°C" oninput="render()"></div>
-          <div class="field"><label>Frequency</label><input id="f-freq" value="60 Hz" oninput="render()"></div>
+          <div class="field"><label>Power Rating</label><input id="f-power" placeholder="Power Rating" oninput="render()"></div>
+          <div class="field"><label>Cooling Class</label><input id="f-cooling" placeholder="Cooling class" oninput="render()"></div>
+          <div class="field"><label>Temperature Rise</label><input id="f-tempRise" placeholder="65°C" oninput="render()"></div>
+          <div class="field"><label>Frequency</label><input id="f-freq" placeholder="60 Hz" oninput="render()"></div>
           <div class="field"><label>Phases</label>
             <select id="f-phases" onchange="render()">
               <option value="3 Phase" selected>3 Phase</option>
@@ -478,8 +478,8 @@
           <div class="field"><label>High Voltage Winding</label><input id="f-hv" value="" oninput="render()"></div>
           <div class="field"><label>Low Voltage  Winding</label><input id="f-lv" value="" oninput="render()"></div>
           <div class="field"><label>Impedance (%)</label><input id="f-impedance" value="5.75% (Tol: ±7.5%)" oninput="render()"></div>
-          <div class="field span-2"><label>De-Energized Tap Changer</label><input id="f-tapChanger" value="5 position, 4 Steps, ±2.5% 25kV, BIL 150kV, 75A" oninput="render()"></div>
-          <div class="field"><label>Efficiency Standard</label><input id="f-eff" value="CAN/CSAC802" oninput="render()"></div>
+          <div class="field span-2"><label>De-Energized Tap Changer</label><input id="f-tapChanger" placeholder="5 position, 4 Steps, ±2.5% 25kV, BIL 150kV, 75A" oninput="render()"></div>
+          <div class="field"><label>Efficiency Standard</label><input id="f-eff" placeholder="CAN/CSAC802" oninput="render()"></div>
           <div class="field"><label>Service Voltage (HV)</label><input id="f-svcVoltHV" placeholder="e.g. 24.9kV" oninput="render()"></div>
         </div>
 
@@ -520,8 +520,8 @@
               
             </select>
           </div>
-          <div class="field"><label>Core Material</label><input id="f-coreMat" value="CRGO M4 and better" oninput="render()"></div>
-          <div class="field"><label>Vector Group</label><input id="f-vectorGroup" value="" oninput="render()"></div>
+          <div class="field"><label>Core Material</label><input id="f-coreMat" placeholder="CRGO M4 and better" oninput="render()"></div>
+          <div class="field"><label>Vector Group</label><input id="f-vectorGroup" placeholder="Vector Group" oninput="render()"></div>
           <div class="field"><label>Insulation Class</label><input id="f-insClass" placeholder="" oninput="render()"></div>
         </div>
 
@@ -533,18 +533,18 @@
       <div id="tab-bushings" class="tab-pane">
         <div class="section-heading">High Voltage Bushings</div>
         <div class="form-grid cols-1">
-          <div class="field"><label>HV Bushing Class</label><input id="f-hvBush" value="" oninput="render()"></div>
+          <div class="field"><label>HV Bushing Class</label><input id="f-hvBush" placeholder="Hv class" oninput="render()"></div>
         </div>
         <div class="form-grid">
-          <div class="field"><label>HV Bushing Current Rating</label><input id="f-surgeStd" value="" oninput="render()"></div>
-          <div class="field"><label>HV Bushing Type</label><input id="f-mcov" value="" oninput="render()"></div>
+          <div class="field"><label>HV Bushing Current Rating</label><input id="f-surgeStd" placeholder="HV rating" oninput="render()"></div>
+          <div class="field"><label>HV Bushing Type</label><input id="f-mcov" placeholder="Bushing type" oninput="render()"></div>
          </div>
 
         <div class="section-heading">Low Voltage Bushings</div>
         <div class="form-grid">
-          <div class="field"><label>LV Bushing Class</label><input id="f-lvBushClass" value="1.2 kV class" oninput="render()"></div>
-          <div class="field"><label>LV Bushing Current Rating</label><input id="f-lvBushCurrent" value="3000 A" oninput="render()"></div>
-          <div class="field"><label>LV Bushing Type</label><input id="f-lvBushType" value="Epoxy-type Bushing" oninput="render()"></div>
+          <div class="field"><label>LV Bushing Class</label><input id="f-lvBushClass" placeholder="1.2 kV class" oninput="render()"></div>
+          <div class="field"><label>LV Bushing Current Rating</label><input id="f-lvBushCurrent" placeholder="3000 A" oninput="render()"></div>
+          <div class="field"><label>LV Bushing Type</label><input id="f-lvBushType" placeholder="Epoxy-type Bushing" oninput="render()"></div>
           <div class="field"><label>No. of Holes (LV)</label><input id="f-lvBushHoles" placeholder="To be confirmed" oninput="render()"></div>
         </div>
 
@@ -631,10 +631,10 @@
 
         <div class="section-heading" style="margin-top:1.5rem">Signature Block</div>
         <div class="form-grid">
-          <div class="field"><label>Prepared By</label><input id="f-preparedBy" placeholder="e.g. Eng. Rahul Sharma" oninput="render()"></div>
-          <div class="field"><label>Designation</label><input id="f-designation" placeholder="e.g. Design Engineer" oninput="render()"></div>
-          <div class="field"><label>Checked By</label><input id="f-checkedBy" placeholder="e.g. Eng. Priya Patel" oninput="render()"></div>
-          <div class="field"><label>Approved By</label><input id="f-approvedBy" placeholder="e.g. Mr. S. Kadam" oninput="render()"></div>
+          <div class="field"><label>Prepared By</label><input id="f-preparedBy" placeholder="Prepared by" oninput="render()"></div>
+          <div class="field"><label>Designation</label><input id="f-designation" placeholder="Designation" oninput="render()"></div>
+          <div class="field"><label>Checked By</label><input id="f-checkedBy" placeholder="Checked By" oninput="render()"></div>
+          <div class="field"><label>Approved By</label><input id="f-approvedBy" placeholder="Approved By" oninput="render()"></div>
         </div>
       </div>
 
@@ -914,11 +914,11 @@ function render() {
       ${row('4.1','HV Bushing Class:', g('f-hvBush'))}
       ${row('4.2','HV Bushing Current Rating:', g('f-surgeStd'))}
       ${row('4.3','HV Bushing Type', g('f-mcov'))}
-        ${row('4.4','LV Bushing Class: ', g('f-lvBushClass'))}
-          ${row('4.4','LV Bushing Current Rating: ', g('f-lvBushCurrent'))}
-      ${row('4.4','LV Bushing Type: ', g('f-lvBushType'))}
-      ${row('4.5','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-      ${row('4.6','Internal Current Limiting Fuse:', g('f-fuse'))}
+      ${row('4.4','LV Bushing Class: ', g('f-lvBushClass'))}
+      ${row('4.5','LV Bushing Current Rating: ', g('f-lvBushCurrent'))}
+      ${row('4.6','LV Bushing Type: ', g('f-lvBushType'))}
+      ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
+      ${row('4.8','Internal Current Limiting Fuse:', g('f-fuse'))}
 
       ${secHdr('5','Tank, Oil & Finish')}
       ${row('5.1','Tank Standard:', g('f-tankStd'))}
