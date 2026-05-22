@@ -449,7 +449,7 @@
           <div class="field"><label>Customer Name</label><input id="f-customer" placeholder="e.g. ABC Power Corp" oninput="render()"></div>
           <div class="field"><label>Project Name</label><input id="f-project" placeholder="e.g. Substation Expansion" oninput="render()"></div>
           <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="e.g. PO-2025-001" oninput="render()"></div>
-          <div class="field"><label>Revision No.</label><input id="f-rev" value="Rev. 0" oninput="render()"></div>
+          <div class="field"><label>Revision No.</label><input id="f-rev" value="" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Environmental Data</div>
@@ -504,7 +504,7 @@
               <option value="Wye with neutral">Wye with neutral</option>
             </select>
           </div>
-          <div class="field"><label>HV BIL (kV)</label><input id="f-hvBIL" value="150kV" oninput="render()"></div>
+          <div class="field"><label>HV BIL (kV)</label><input id="f-hvBIL" value="" oninput="render()"></div>
           <div class="field"><label>LV Configuration</label>
             <select id="f-lvConfig" onchange="render()">
               <option value="Wye" selected>Wye</option>
@@ -512,7 +512,7 @@
               <option value="Wye with neutral">Wye with neutral</option>
             </select>
           </div>
-          <div class="field"><label>LV BIL (kV)</label><input id="f-lvBIL" value="30kV" oninput="render()"></div>
+          <div class="field"><label>LV BIL (kV)</label><input id="f-lvBIL" value="" oninput="render()"></div>
           <div class="field"><label>Winding Material (HV/LV)</label>
             <select id="f-windMat" onchange="render()">
               <option value="Copper" selected>Copper</option>
@@ -533,13 +533,13 @@
       <div id="tab-bushings" class="tab-pane">
         <div class="section-heading">High Voltage Bushings</div>
         <div class="form-grid cols-1">
-          <div class="field"><label>HV Bushing Type</label><input id="f-hvBush" value="Dead break, 35kV class, BIL 150kV, 600A pluggable connectors as per ANSI/IEEE" oninput="render()"></div>
+          <div class="field"><label>HV Bushing Type</label><input id="f-hvBush" value="" oninput="render()"></div>
         </div>
         <div class="form-grid">
-          <div class="field"><label>Surge Arrester Standard</label><input id="f-surgeStd" value="ANSI/IEEE C62.11" oninput="render()"></div>
+          <div class="field"><label>Surge Arrester Standard</label><input id="f-surgeStd" value="" oninput="render()"></div>
           <div class="field"><label>MCOV Voltage</label><input id="f-mcov" value="" oninput="render()"></div>
           <div class="field"><label>Surge Arrester Type</label><input id="f-surgeType" value="" oninput="render()"></div>
-          <div class="field"><label>Surge Arrester Class</label><input id="f-surgeClass" value="Class 25 kV" oninput="render()"></div>
+          <div class="field"><label>Surge Arrester Class</label><input id="f-surgeClass" value="" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Low Voltage Bushings</div>
