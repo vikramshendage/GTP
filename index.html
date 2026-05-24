@@ -1072,15 +1072,17 @@ function render() {
 
         ${sigBlock}
 
-        <div class="gtp-footer-band">
-          <span class="gold-text">${escapeHtml(g('f-companyName'))}</span>
-          <span>Document Date: ${dateStr}</span>
-          <span>Ref: ${escapeHtml(g('f-refNo'))||'—'}</span>
-        </div>
+       <div class="gtp-footer-band">
+  <span class="gold-text">${escapeHtml(g('f-companyName'))}</span>
+  <span>Document Date: ${dateStr}</span>
+  <span>Ref: ${escapeHtml(g('f-refNo'))||'—'}</span>
+</div>
 
       </div>
     </div>
-  </div>`;
+  </div>
+
+</div>`;
 }
 
 /* ─── EXPORT PDF ─── */
