@@ -486,6 +486,18 @@
 
       <!-- ── TAB: Company ── -->
       <div id="tab-company" class="tab-pane active">
+        <div class="section-heading">Company Logo</div>
+        <div class="form-grid cols-1">
+          <div class="field">
+            <label>Logo Image Path / URL</label>
+            <input id="f-logoPath" placeholder="e.g. skaLogo.webp or https://..." oninput="render()">
+          </div>
+          <div id="logoPathPreview" style="display:none;margin-top:6px;">
+            <div style="font-size:11px;color:#6b7590;margin-bottom:6px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;">Preview</div>
+            <img id="logoPathImg" src="" alt="Logo" style="max-height:72px;max-width:180px;border:1.5px solid #e2e6ee;border-radius:6px;padding:4px;background:#f8f9fb;">
+          </div>
+        </div>
+
         <div class="section-heading">Company Details</div>
         <div class="form-grid cols-1">
           <div class="field"><label>Company Name</label><input id="f-companyName" value="SKA TRANSFORMERS Pvt Ltd" oninput="render()"></div>
@@ -772,8 +784,38 @@ function updateNote(i,val){notes[i]=val;render();}
 function g(id){const el=document.getElementById(id);return el?el.value:'';}
 function escapeHtml(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function fmtDate(ds){if(!ds)return '';const d=new Date(ds+'T00:00:00');return[String(d.getDate()).padStart(2,'0'),String(d.getMonth()+1).padStart(2,'0'),d.getFullYear()].join('.');}
-function row(num,label,val){if(!val)return '';return `<tr><td class="lbl"><span class="row-num">${num}</span>${label}</td><td>${escapeHtml(val)}</td></tr>`;}
-function secHdr(num,title){return `<tr class="sec-hdr"><td colspan="2">${num}. ${title.toUpperCase()}</td></tr>`;}
+
+/* ─── Per-section sub-numbering ───
+   sec(prefix)       → sets current section prefix + resets sub-counter, returns ''
+   secHdr(p, title)  → calls sec() AND returns the blue header row HTML
+   row(_,label,val)  → if val present: sub-counter++, returns numbered row
+   Result: 1.1 1.2 | 2.1 2.2 | 2a.1 2a.2 | 3.1 3.2 … */
+let _secPrefix = '1';
+let _subCount  = 0;
+
+function resetSerial(){ _secPrefix = '0'; _subCount = 0; }
+
+/* Just sets prefix + resets sub-counter. Returns '' so safe to embed inline. */
+function sec(prefix){
+  _secPrefix = String(prefix);
+  _subCount  = 0;
+  return '';
+}
+
+/* Sets prefix + resets counter AND returns the header <tr> HTML */
+function secHdr(prefix, title){
+  sec(prefix);
+  return `<tr class="sec-hdr"><td colspan="2">${prefix}. ${title.toUpperCase()}</td></tr>`;
+}
+
+function row(_ignored, label, val){
+  if(!val) return '';
+  _subCount++;
+  return `<tr>
+    <td class="lbl"><span class="row-num">${_secPrefix}.${_subCount}</span>${label}</td>
+    <td>${escapeHtml(val)}</td>
+  </tr>`;
+}
 
 /* ─── CORNER SVG ─── */
 function cornerSVG(){
@@ -787,6 +829,7 @@ function cornerSVG(){
 
 /* ─── RENDER ─── */
 function render() {
+  resetSerial();
   const accHTML = accessories.map(a=>a?`<li>${escapeHtml(a)}</li>`:'').join('');
   const notesHTML = notes.map((n,i)=>n?`<p>${i+1}. ${escapeHtml(n)}</p>`:'').join('');
   const hasWarranty = g('f-warranty'), hasDelivery = g('f-delivery');
@@ -805,6 +848,17 @@ function render() {
       <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Approved By<br><strong>${escapeHtml(g('f-approvedBy'))}</strong></div></div>
     </div>` : '';
 
+  // Logo path live preview
+  const logoPath = g('f-logoPath');
+  const logoPreviewBox = document.getElementById('logoPathPreview');
+  const logoPreviewImg = document.getElementById('logoPathImg');
+  if (logoPath && logoPreviewBox && logoPreviewImg) {
+    logoPreviewBox.style.display = 'block';
+    logoPreviewImg.src = logoPath;
+  } else if (logoPreviewBox) {
+    logoPreviewBox.style.display = 'none';
+  }
+
   document.getElementById('gtpPreview').innerHTML = `
   <div class="gtp-doc" id="gtpDoc">
     <div class="gtp-border-frame">
@@ -818,7 +872,9 @@ function render() {
         <!-- HEADER -->
         <div class="gtp-header">
           <div class="gtp-logo-box">
-            <span style="font-size:13px;font-weight:800;color:#1a56a0;letter-spacing:2px">SKA</span>
+            ${g('f-logoPath')
+              ? `<img src="${escapeHtml(g('f-logoPath'))}" alt="Logo">`
+              : `<span style="font-size:13px;font-weight:800;color:#1a56a0;letter-spacing:2px">SKA</span>`}
           </div>
           <div class="gtp-company-block">
             <div class="gtp-cname">${escapeHtml(g('f-companyName'))}</div>
@@ -871,7 +927,7 @@ function render() {
           ${row('2.10','Efficiency Standard (NLL and LL):', g('f-eff'))}
           ${row('2.11','Service Voltage (HV):', g('f-svcVoltHV'))}
 
-          ${hasLoss ? secHdr('2a','Loss Data') : ''}
+          ${sec('2a')}${hasLoss ? `<tr class="sec-hdr"><td colspan="2">2a. LOSS DATA</td></tr>` : ''}
           ${row('2a.1','No-Load Loss (NLL):', g('f-nll'))}
           ${row('2a.2','Load Loss (LL) at 100%:', g('f-ll'))}
           ${row('2a.3','Total Losses:', g('f-totalLoss'))}
@@ -908,7 +964,7 @@ function render() {
           ${row('5.7','Oil Flash Point:', g('f-oilFlash'))}
           ${row('5.8','Oil Fire Point:', g('f-oilFire'))}
 
-          ${(hasDim||hasWeight) ? secHdr('5a','Weight & Dimensions') : ''}
+          ${sec('5a')}${(hasDim||hasWeight) ? `<tr class="sec-hdr"><td colspan="2">5a. WEIGHT &amp; DIMENSIONS</td></tr>` : ''}
           ${row('5a.1','Length:', g('f-length'))}
           ${row('5a.2','Width:', g('f-width'))}
           ${row('5a.3','Height:', g('f-height'))}
@@ -916,7 +972,7 @@ function render() {
           ${row('5a.5','Tank & Fittings Weight:', g('f-tankWeight'))}
           ${row('5a.6','Total Weight:', g('f-totalWeight'))}
 
-          ${hasTests ? secHdr('5b','Test Requirements') : ''}
+          ${sec('5b')}${hasTests ? `<tr class="sec-hdr"><td colspan="2">5b. TEST REQUIREMENTS</td></tr>` : ''}
           ${row('5b.1','Factory Acceptance Test (FAT):', g('f-fat'))}
           ${row('5b.2','Site Acceptance Test (SAT):', g('f-sat'))}
           ${row('5b.3','Routine Tests:', g('f-routineTests'))}
