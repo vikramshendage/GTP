@@ -244,47 +244,46 @@ td {
      GTP DOCUMENT — PREMIUM BORDERED LAYOUT
   ───────────────────────────────────────── */
   .gtp-doc {
-    width:210mm;
-    min-height:297mm;
-    margin:0 auto 20px auto;
-    background:#fff;
-    position:relative;
-    overflow:visible;
-    box-shadow:0 0 12px rgba(0,0,0,0.15);
-    page-break-after:auto;
+ width: 210mm;
+    height: 297mm;
+    position: relative;
+    background: #fff;
+    overflow: hidden;
+    page-break-after: always;
+    box-sizing: border-box;
   }
 
  .gtp-doc::before{
-    content:'';
-    position:absolute;
-    top:10mm;
-    left:10mm;
-    right:10mm;
-    bottom:10mm;
-    border:3px solid #0d1b3e;
-    pointer-events:none;
-    z-index:1;
+     content: '';
+    position: absolute;
+    top: 10mm;
+    left: 10mm;
+    right: 10mm;
+    bottom: 10mm;
+    border: 3px solid #0d1b3e;
+    z-index: 999;
+    pointer-events: none;
 }
 
  .gtp-doc::after{
-    content:'';
-    position:absolute;
-    top:14mm;
-    left:14mm;
-    right:14mm;
-    bottom:14mm;
-    border:1px solid #c9a84c;
-    pointer-events:none;
-    z-index:1;
+     content: '';
+    position: absolute;
+    top: 14mm;
+    left: 14mm;
+    right: 14mm;
+    bottom: 14mm;
+    border: 1px solid #c9a84c;
+    z-index: 999;
+    pointer-events: none;
 }
 
   /* Outer decorative border frame */
   .gtp-border-frame {
-    position:relative;
-    z-index:2;
-    padding:18mm 16mm;
-    min-height:297mm;
-    box-sizing:border-box;
+   position: relative;
+    height: 100%;
+    padding: 20mm 18mm;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   /* Triple-line border effect */
@@ -314,7 +313,10 @@ td {
   .corner-ornament.bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
   .corner-ornament.br { bottom: 3px; right: 3px; transform: scale(-1); }
 
-  .gtp-inner { padding: 10px; position: relative; z-index: 0; }
+  .gtp-inner {  height: 255mm;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; }
 
   /* ── Header ── */
   .gtp-header {
@@ -387,18 +389,25 @@ td {
   .gtp-title-box .t2 { font-size: 12px; font-weight: bold; margin-bottom: 2px; }
   .gtp-title-box .t3 { font-size: 10px; color: #555; }
 
+ .gtp-acc-block,
+.gtp-notes,
+.gtp-sig {
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
   /* ── Tables ── */
   table.gtp { 
-   width:100%;
-   border-collapse:collapse;
-   page-break-inside:auto;
+    width: 100%;
+    border-collapse: collapse;
+    page-break-inside: auto;
   }
  table.gtp tr{
-    page-break-inside:avoid;
-    page-break-after:auto;
+     page-break-inside: avoid;
+    break-inside: avoid;
   }
   table.gtp td {
-  page-break-inside:avoid;
+   page-break-inside: avoid;
+    break-inside: avoid;
 }
   }
   table.gtp tr:hover td { background: #f8faff; }
@@ -420,23 +429,20 @@ td {
   .row-num { font-size: 9px; color: #9aa; margin-right: 4px; font-family: 'DM Mono', monospace; }
 
   /* ── Accessories Block ── */
-  .gtp-acc-block {
-     page-break-inside:avoid;
-  }
+  .page-break {
+    page-break-before: always;
+    break-before: page;
+}
   .gtp-acc-block ol { padding-left: 22px; margin: 0; }
   .gtp-acc-block li { margin: 3px 0; font-size: 10.5px; }
 
   /* ── Notes ── */
-  .gtp-notes {
-    page-break-inside:avoid;
-  }
+  
   .gtp-notes strong { color: #0d1b3e; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
   .gtp-notes p { margin: 3px 0; font-size: 10px; color: #555; padding-left: 8px; border-left: 2px solid #c9a84c; margin-bottom: 4px; }
 
   /* ── Signature Block ── */
-  .gtp-sig {
-    page-break-inside:avoid;
-  }
+  
   .gtp-sig::before {
     content: '';
     position: absolute;
@@ -459,7 +465,10 @@ td {
     letter-spacing: 0.05em;
   }
   .gtp-footer-band .gold-text { color: var(--gold); font-weight: 600; }
-
+.sec-hdr {
+    page-break-after: avoid;
+    break-after: avoid;
+}
   /* ── Responsive ── */
   @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
@@ -969,7 +978,7 @@ function render() {
           ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
           ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
           ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-          
+          <div class="page-break"></div>
 
           ${secHdr('5','Tank, Oil & Finish')}
           ${row('5.1','Tank Standard:', g('f-tankStd'))}
@@ -1033,10 +1042,11 @@ function exportPDF() {
 
 @page {
     size: A4;
-    margin: 10mm;
+    margin: 0;
 }
 
 body {
+     background: #fff;
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
 }
