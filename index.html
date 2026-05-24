@@ -431,10 +431,12 @@ td {
 
   /* ── Accessories Block ── */
   .page-break {
-     display:block;
-    height:0;
+      display:block;
     page-break-before:always;
     break-before:page;
+    height:0;
+    margin:0;
+    padding:0;
 }
   .gtp-acc-block ol { padding-left: 22px; margin: 0; }
   .gtp-acc-block li { margin: 3px 0; font-size: 10.5px; }
@@ -1018,9 +1020,17 @@ function render() {
           ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
           ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
           ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-   </table>
+ </table>
 
-<div class="page-break"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECOND PAGE -->
+
+  <div class="gtp-doc">
+    <div class="gtp-border-frame">
+      <div class="gtp-inner">
 
 <table class="gtp" style="margin-bottom:0">
 
@@ -1100,6 +1110,7 @@ table.gtp {
     width: 100%;
     border-collapse: collapse;
     page-break-inside: auto;
+     margin-bottom:0 !important;
 }
 
 table.gtp tr {
@@ -1116,10 +1127,11 @@ table.gtp td {
   
   /* ── Outer border frame ── */
   .gtp-border-frame{
-    padding:14mm 12mm;
-    position:relative;
-    min-height:auto;
-    page-break-after:auto;
+     position:relative;
+    z-index:2;
+    padding:18mm 16mm 10mm 16mm;
+    min-height:277mm;
+    box-sizing:border-box;
   }
   .gtp-border-frame::before{
     content:'';position:absolute;
