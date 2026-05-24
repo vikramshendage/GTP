@@ -245,45 +245,48 @@ td {
   ───────────────────────────────────────── */
   .gtp-doc {
  width: 210mm;
-    height: 297mm;
+    min-height: 297mm;
     position: relative;
     background: #fff;
-    overflow: hidden;
+    margin: 0 auto 20px auto;
     page-break-after: always;
     box-sizing: border-box;
+    overflow: visible;
+    padding-top: 12mm;
+    padding-bottom: 12mm;
   }
 
  .gtp-doc::before{
-     content: '';
-    position: absolute;
-    top: 10mm;
-    left: 10mm;
-    right: 10mm;
-    bottom: 10mm;
-    border: 3px solid #0d1b3e;
-    z-index: 999;
-    pointer-events: none;
+    content:'';
+    position:absolute;
+    top:10mm;
+    left:10mm;
+    right:10mm;
+    bottom:10mm;
+    border:3px solid #0d1b3e;
+    pointer-events:none;
+    z-index:1;
 }
 
  .gtp-doc::after{
-     content: '';
-    position: absolute;
-    top: 14mm;
-    left: 14mm;
-    right: 14mm;
-    bottom: 14mm;
-    border: 1px solid #c9a84c;
-    z-index: 999;
-    pointer-events: none;
+      content:'';
+    position:absolute;
+    top:14mm;
+    left:14mm;
+    right:14mm;
+    bottom:14mm;
+    border:1px solid #c9a84c;
+    pointer-events:none;
+    z-index:1;
 }
 
   /* Outer decorative border frame */
   .gtp-border-frame {
-   position: relative;
-    height: 100%;
-    padding: 20mm 18mm;
-    box-sizing: border-box;
-    overflow: hidden;
+   position:relative;
+    z-index:2;
+    padding:18mm 16mm;
+    min-height:297mm;
+    box-sizing:border-box;
   }
 
   /* Triple-line border effect */
@@ -313,8 +316,8 @@ td {
   .corner-ornament.bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
   .corner-ornament.br { bottom: 3px; right: 3px; transform: scale(-1); }
 
-  .gtp-inner {   min-height:255mm;
-    overflow:visible; }
+  .gtp-inner {    position:relative;
+    z-index:2; }
 
   /* ── Header ── */
   .gtp-header {
@@ -479,13 +482,50 @@ td {
   }
 
   /* ── Print ── */
-  @media print {
-    .topbar, .form-side, .preview-topbar { display: none !important; }
-    .layout { display: block; }
-    .preview-side { background: #fff; padding: 0; height: auto; overflow: visible; }
-    .gtp-doc { box-shadow: none; }
-    body { background: #fff; }
-  }
+  @media print{
+
+    .topbar,
+    .form-side,
+    .preview-topbar{
+        display:none !important;
+    }
+
+    body{
+        background:#fff;
+    }
+
+    .layout{
+        display:block;
+    }
+
+    .preview-side{
+        background:#fff;
+        padding:0;
+        overflow:visible;
+        height:auto;
+    }
+
+    .gtp-doc{
+        width:210mm;
+        min-height:297mm;
+        margin:0 auto;
+        box-shadow:none;
+        overflow:visible;
+        break-after:page;
+        page-break-after:always;
+    }
+
+    .gtp-doc:last-child{
+        break-after:auto;
+        page-break-after:auto;
+    }
+
+    @page{
+        size:A4;
+        margin:0;
+    }
+
+}
 
   .acc-item.drag-over { border-color: var(--blue); background: var(--blue-light); }
 </style>
@@ -1139,10 +1179,10 @@ table.gtp td {
   @media print{
 
   .page-break{
-    display:block;
+   display:block;
+    height:20mm;
     page-break-before:always;
     break-before:page;
-    height:0;
 }
 
  body{
