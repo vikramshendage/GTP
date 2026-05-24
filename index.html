@@ -4,90 +4,102 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GTP Transformer Generator – SKA</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
+    --navy:       #0d1b3e;
+    --navy-mid:   #1a2f5e;
     --blue:       #1a56a0;
-    --blue-light: #e8f0fb;
-    --blue-mid:   #2f6bbf;
-    --gray-100:   #f5f6f8;
-    --gray-200:   #e8eaed;
-    --gray-300:   #d1d5db;
-    --gray-500:   #6b7280;
-    --gray-700:   #374151;
-    --gray-900:   #111827;
-    --red:        #dc2626;
-    --green:      #16a34a;
+    --blue-light: #dce8f8;
+    --blue-mid:   #2563c4;
+    --gold:       #c9a84c;
+    --gold-light: #f9f2e3;
+    --gray-50:    #f8f9fb;
+    --gray-100:   #f0f2f6;
+    --gray-200:   #e2e6ee;
+    --gray-300:   #c8cedb;
+    --gray-500:   #6b7590;
+    --gray-700:   #374265;
+    --gray-900:   #0f1629;
+    --red:        #c0392b;
+    --green:      #1a7a4a;
     --white:      #ffffff;
-    --radius:     6px;
-    --shadow:     0 2px 8px rgba(0,0,0,0.08);
-    --shadow-lg:  0 4px 20px rgba(0,0,0,0.12);
+    --radius:     8px;
+    --radius-sm:  4px;
+    --shadow:     0 2px 12px rgba(13,27,62,0.10);
+    --shadow-lg:  0 6px 32px rgba(13,27,62,0.16);
   }
 
   body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gray-100);
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    background: #e8edf5;
     color: var(--gray-900);
     min-height: 100vh;
   }
 
   /* ── Top Nav ── */
   .topbar {
-    background: var(--blue);
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
     color: #fff;
     padding: 0 2rem;
-    height: 56px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 20px rgba(13,27,62,0.35);
+    border-bottom: 2px solid var(--gold);
   }
   .topbar-brand {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     font-size: 17px;
     font-weight: 700;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
+    font-family: 'Playfair Display', serif;
   }
   .topbar-brand .logo-box {
-    width: 34px; height: 34px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 6px;
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold) 0%, #e8c46a 100%);
+    border-radius: 8px;
     display: flex; align-items: center; justify-content: center;
     font-size: 13px; font-weight: 800;
+    color: var(--navy);
+    font-family: 'DM Sans', sans-serif;
+    box-shadow: 0 2px 8px rgba(201,168,76,0.4);
   }
+  .topbar-brand .brand-sub { font-size: 11px; font-weight: 400; opacity: 0.65; display: block; letter-spacing: 0.12em; font-family: 'DM Mono', monospace; text-transform: uppercase; margin-top: 1px; }
   .topbar-actions { display: flex; gap: 10px; }
-  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.18s; font-family: inherit; }
-  .btn-outline-white { background: transparent; border: 1.5px solid rgba(255,255,255,0.5); color: #fff; }
-  .btn-outline-white:hover { background: rgba(255,255,255,0.15); }
-  .btn-white { background: #fff; color: var(--blue); }
-  .btn-white:hover { background: var(--blue-light); }
-  .btn-blue { background: var(--blue); color: #fff; }
-  .btn-blue:hover { background: var(--blue-mid); }
-  .btn-red { background: var(--red); color: #fff; }
+
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 8px 18px; border-radius: var(--radius); font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: all 0.18s; font-family: 'DM Sans', sans-serif; letter-spacing: 0.01em; }
+  .btn-outline-white { background: transparent; border: 1.5px solid rgba(255,255,255,0.35); color: #fff; }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.6); }
+  .btn-gold { background: linear-gradient(135deg, var(--gold) 0%, #ddb94e 100%); color: var(--navy); font-weight: 700; box-shadow: 0 2px 10px rgba(201,168,76,0.35); }
+  .btn-gold:hover { box-shadow: 0 4px 18px rgba(201,168,76,0.5); transform: translateY(-1px); }
   .btn-green { background: var(--green); color: #fff; }
-  .btn-green:hover { background: #15803d; }
+  .btn-green:hover { background: #155c39; }
 
   /* ── Layout ── */
   .layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    min-height: calc(100vh - 56px);
+    min-height: calc(100vh - 60px);
   }
 
   /* ── FORM SIDE ── */
   .form-side {
     background: var(--white);
     overflow-y: auto;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 60px);
     position: sticky;
-    top: 56px;
+    top: 60px;
+    border-right: 1px solid var(--gray-200);
   }
   .form-tabs {
     display: flex;
@@ -97,229 +109,198 @@
     top: 0;
     z-index: 10;
     overflow-x: auto;
+    box-shadow: 0 2px 8px rgba(13,27,62,0.06);
   }
   .form-tab {
-    padding: 14px 18px;
-    font-size: 13px;
+    padding: 14px 16px;
+    font-size: 12px;
     font-weight: 600;
     color: var(--gray-500);
     cursor: pointer;
-    border-bottom: 2px solid transparent;
+    border-bottom: 2.5px solid transparent;
     margin-bottom: -2px;
     white-space: nowrap;
     transition: all 0.15s;
     background: none;
-    border-top: none;
-    border-left: none;
-    border-right: none;
-    font-family: inherit;
+    border-top: none; border-left: none; border-right: none;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    font-size: 11px;
   }
   .form-tab:hover { color: var(--blue); }
-  .form-tab.active { color: var(--blue); border-bottom-color: var(--blue); }
+  .form-tab.active { color: var(--blue); border-bottom-color: var(--blue); background: var(--blue-light); }
 
   .form-body { padding: 1.5rem; }
   .tab-pane { display: none; }
   .tab-pane.active { display: block; }
 
   .section-heading {
-    font-size: 11px;
+    font-size: 10.5px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
-    color: var(--blue);
-    margin: 1.5rem 0 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    margin: 1.5rem 0 0.8rem;
     padding-bottom: 7px;
-    border-bottom: 1.5px solid var(--blue-light);
+    border-bottom: 2px solid var(--gold);
+    display: flex; align-items: center; gap: 8px;
   }
+  .section-heading::before { content: ''; display: block; width: 4px; height: 14px; background: var(--gold); border-radius: 2px; }
   .section-heading:first-child { margin-top: 0; }
 
-  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .form-grid.cols-1 { grid-template-columns: 1fr; }
   .form-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
 
   .field { display: flex; flex-direction: column; gap: 5px; }
   .field.span-2 { grid-column: span 2; }
   .field label {
-    font-size: 11.5px;
+    font-size: 11px;
     font-weight: 600;
     color: var(--gray-700);
-    letter-spacing: 0.01em;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
   }
   .field input, .field select, .field textarea {
     padding: 8px 11px;
-    border: 1.5px solid var(--gray-300);
-    border-radius: var(--radius);
+    border: 1.5px solid var(--gray-200);
+    border-radius: var(--radius-sm);
     font-size: 13px;
-    font-family: inherit;
+    font-family: 'DM Sans', sans-serif;
     color: var(--gray-900);
-    background: var(--white);
-    transition: border-color 0.15s, box-shadow 0.15s;
+    background: var(--gray-50);
+    transition: all 0.15s;
     width: 100%;
   }
   .field input:focus, .field select:focus, .field textarea:focus {
     outline: none;
     border-color: var(--blue);
-    box-shadow: 0 0 0 3px rgba(26,86,160,0.12);
+    background: var(--white);
+    box-shadow: 0 0 0 3px rgba(26,86,160,0.1);
   }
   .field textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
 
-  /* ── Accessories Dynamic ── */
+  /* ── Accessories ── */
   .accessories-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
   .acc-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--gray-100);
+    display: flex; align-items: center; gap: 8px;
+    background: var(--gray-50);
     border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius);
+    border-radius: var(--radius-sm);
     padding: 8px 10px;
     transition: border-color 0.15s;
   }
   .acc-item:hover { border-color: var(--blue); }
-  .acc-num {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--blue);
-    min-width: 22px;
-  }
-  .acc-input {
-    flex: 1;
-    border: none !important;
-    background: transparent !important;
-    padding: 2px 0 !important;
-    font-size: 13px;
-    color: var(--gray-900);
-    font-family: inherit;
-    box-shadow: none !important;
-  }
+  .acc-num { font-size: 11px; font-weight: 700; color: var(--blue); min-width: 22px; font-family: 'DM Mono', monospace; }
+  .acc-input { flex: 1; border: none !important; background: transparent !important; padding: 2px 0 !important; font-size: 13px; color: var(--gray-900); font-family: 'DM Sans', sans-serif; box-shadow: none !important; }
   .acc-input:focus { outline: none; }
-  .acc-drag {
-    cursor: grab;
-    color: var(--gray-300);
-    font-size: 16px;
-    line-height: 1;
-    user-select: none;
-  }
-  .acc-del {
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: var(--gray-300);
-    font-size: 18px;
-    line-height: 1;
-    padding: 0 2px;
-    transition: color 0.15s;
-    font-family: inherit;
-  }
+  .acc-drag { cursor: grab; color: var(--gray-300); font-size: 16px; line-height: 1; user-select: none; }
+  .acc-del { background: none; border: none; cursor: pointer; color: var(--gray-300); font-size: 18px; line-height: 1; padding: 0 2px; transition: color 0.15s; font-family: 'DM Sans', sans-serif; }
   .acc-del:hover { color: var(--red); }
   .add-acc-row { display: flex; align-items: center; gap: 10px; }
-  .add-acc-input {
-    flex: 1;
-    padding: 8px 11px;
-    border: 1.5px dashed var(--gray-300);
-    border-radius: var(--radius);
-    font-size: 13px;
-    font-family: inherit;
-    color: var(--gray-900);
-    background: var(--white);
-    transition: border-color 0.15s;
-  }
+  .add-acc-input { flex: 1; padding: 8px 11px; border: 1.5px dashed var(--gray-300); border-radius: var(--radius-sm); font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--gray-900); background: var(--white); transition: all 0.15s; }
   .add-acc-input:focus { outline: none; border-color: var(--blue); border-style: solid; }
-  .add-acc-btn {
-    width: 36px; height: 36px;
-    background: var(--blue);
-    color: #fff;
-    border: none;
-    border-radius: var(--radius);
-    font-size: 22px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    font-family: inherit;
-    flex-shrink: 0;
-    transition: background 0.15s;
-    line-height: 1;
-  }
+  .add-acc-btn { width: 36px; height: 36px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'DM Sans', sans-serif; flex-shrink: 0; transition: background 0.15s; line-height: 1; }
   .add-acc-btn:hover { background: var(--blue-mid); }
   .acc-hint { font-size: 11px; color: var(--gray-500); margin-top: 6px; }
 
-  /* ── Logo Upload ── */
-  .logo-upload-area {
-    border: 2px dashed var(--gray-300);
-    border-radius: var(--radius);
-    padding: 16px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    background: var(--white);
-  }
-  .logo-upload-area:hover { border-color: var(--blue); background: var(--blue-light); }
-  .logo-upload-area.has-logo { border-style: solid; border-color: var(--blue); }
-  .logo-preview-thumb {
-    width: 72px; height: 72px;
-    border: 1.5px solid var(--gray-200);
-    border-radius: var(--radius);
-    display: flex; align-items: center; justify-content: center;
-    background: var(--gray-100);
-    flex-shrink: 0;
-    overflow: hidden;
-    font-size: 11px; color: var(--gray-500); text-align: center;
-  }
-  .logo-preview-thumb img { width: 100%; height: 100%; object-fit: contain; }
-  .logo-upload-info { flex: 1; }
-  .logo-upload-info strong { font-size: 13px; font-weight: 600; color: var(--gray-900); display: block; margin-bottom: 3px; }
-  .logo-upload-info span { font-size: 11px; color: var(--gray-500); }
-  .logo-upload-btns { display: flex; flex-direction: column; gap: 6px; }
-  .btn-upload { padding: 6px 14px; background: var(--blue); color: #fff; border: none; border-radius: var(--radius); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; }
-  .btn-upload:hover { background: var(--blue-mid); }
-  .btn-remove-logo { padding: 6px 14px; background: transparent; color: var(--red); border: 1.5px solid var(--red); border-radius: var(--radius); font-size: 12px; font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap; }
-  .btn-remove-logo:hover { background: #fef2f2; }
-
   /* ── PREVIEW SIDE ── */
   .preview-side {
-    background: #e8eaed;
+    background: #d8dfe9;
+    background-image: radial-gradient(circle at 20% 50%, rgba(26,86,160,0.05) 0%, transparent 60%);
     overflow-y: auto;
-    height: calc(100vh - 56px);
+    height: calc(100vh - 60px);
     padding: 1.5rem;
   }
   .preview-topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: flex; align-items: center; justify-content: space-between;
     margin-bottom: 1rem;
   }
   .preview-label {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     color: var(--gray-500);
+    display: flex; align-items: center; gap: 8px;
   }
+  .preview-label::before { content: ''; display: block; width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 6px #22c55e; }
   .preview-actions { display: flex; gap: 8px; }
 
-  /* ── GTP Document ── */
+  /* ─────────────────────────────────────────
+     GTP DOCUMENT — PREMIUM BORDERED LAYOUT
+  ───────────────────────────────────────── */
   .gtp-doc {
     background: #fff;
-    padding: 30px 28px;
     font-family: Arial, sans-serif;
     font-size: 11px;
     color: #000;
     line-height: 1.4;
-    box-shadow: var(--shadow-lg);
-    border-radius: 4px;
+    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(13,27,62,0.08);
+    border-radius: 6px;
+    overflow: hidden;
+    position: relative;
   }
 
+  /* Outer decorative border frame */
+  .gtp-border-frame {
+    padding: 18px;
+    position: relative;
+  }
+
+  /* Triple-line border effect */
+  .gtp-border-frame::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border: 3px solid #0d1b3e;
+    pointer-events: none;
+    z-index: 1;
+  }
+  .gtp-border-frame::after {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border: 1px solid #c9a84c;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Corner ornaments */
+  .corner-ornament {
+    position: absolute;
+    width: 22px; height: 22px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .corner-ornament.tl { top: 3px; left: 3px; }
+  .corner-ornament.tr { top: 3px; right: 3px; transform: scaleX(-1); }
+  .corner-ornament.bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
+  .corner-ornament.br { bottom: 3px; right: 3px; transform: scale(-1); }
+
+  .gtp-inner { padding: 10px; position: relative; z-index: 0; }
+
+  /* ── Header ── */
   .gtp-header {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     gap: 14px;
-    border-bottom: 2px solid #000;
-    padding-bottom: 10px;
+    padding-bottom: 12px;
     margin-bottom: 14px;
+    border-bottom: 3px double #0d1b3e;
+    position: relative;
   }
+  .gtp-header::after {
+    content: '';
+    position: absolute;
+    bottom: 4px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+  }
+
   .gtp-logo-box {
-    width: 80px; height: 80px;
+    width: 84px; height: 84px;
     border: 2px solid #1a56a0;
     border-radius: 4px;
     display: flex; align-items: center; justify-content: center;
@@ -328,54 +309,132 @@
     font-family: Arial, sans-serif;
     letter-spacing: 1px;
     overflow: hidden;
+    background: #f0f5fc;
   }
   .gtp-logo-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
-  .gtp-company-block { flex: 1; text-align: center; }
-  .gtp-cname { font-size: 15px; font-weight: bold; text-decoration: underline; margin-bottom: 3px; }
-  .gtp-cdetails { font-size: 9px; line-height: 1.7; color: #333; }
-  .gtp-ref-block { text-align: right; font-size: 9.5px; line-height: 1.8; white-space: nowrap; }
 
-  .gtp-title-box {
-    border: 1.5px solid #000;
-    padding: 12px 10px;
-    text-align: center;
-    margin-bottom: 12px;
+  .gtp-company-block { flex: 1; text-align: center; padding: 4px 0; }
+  .gtp-cname { font-size: 16px; font-weight: bold; margin-bottom: 4px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .gtp-cname-underline { width: 60%; height: 1px; background: linear-gradient(90deg, transparent, #0d1b3e 20%, #c9a84c 50%, #0d1b3e 80%, transparent); margin: 0 auto 6px; }
+  .gtp-cdetails { font-size: 9px; line-height: 1.8; color: #333; }
+
+  .gtp-ref-block {
+    text-align: right;
+    font-size: 9.5px;
+    line-height: 2;
+    white-space: nowrap;
+    background: #f0f5fc;
+    border: 1px solid #c8cedb;
+    border-radius: 4px;
+    padding: 6px 10px;
+    min-width: 130px;
   }
-  .gtp-title-box .t1 { font-size: 14px; font-weight: bold; margin-bottom: 3px; }
-  .gtp-title-box .t2 { font-size: 12px; font-weight: bold; margin-bottom: 2px; }
-  .gtp-title-box .t3 { font-size: 10.5px; }
+  .gtp-ref-block strong { color: #0d1b3e; font-size: 10px; }
 
+  /* ── Title Box ── */
+  .gtp-title-box {
+    border: 2px solid #0d1b3e;
+    padding: 14px 12px;
+    text-align: center;
+    margin-bottom: 14px;
+    position: relative;
+    background: linear-gradient(180deg, #f0f5fc 0%, #ffffff 100%);
+  }
+  .gtp-title-box::before {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 1px solid #c9a84c;
+    pointer-events: none;
+  }
+  .gtp-title-box .t1 { font-size: 14px; font-weight: bold; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.08em; color: #0d1b3e; }
+  .gtp-title-box .title-rule { width: 80px; height: 2px; background: linear-gradient(90deg, var(--gold), #0d1b3e); margin: 6px auto; border-radius: 1px; }
+  .gtp-title-box .t2 { font-size: 12px; font-weight: bold; margin-bottom: 2px; }
+  .gtp-title-box .t3 { font-size: 10px; color: #555; }
+
+  /* ── Tables ── */
   table.gtp { width: 100%; border-collapse: collapse; }
   table.gtp td {
-    border: 1px solid #000;
-    padding: 4px 8px;
+    border: 1px solid #b0b8cc;
+    padding: 4.5px 9px;
     vertical-align: top;
+    font-size: 10.5px;
   }
+  table.gtp tr:hover td { background: #f8faff; }
   table.gtp .sec-hdr td {
-    background: #e8edf4;
+    background: linear-gradient(90deg, #0d1b3e 0%, #1a2f5e 100%);
+    color: #fff;
     font-weight: bold;
     font-size: 11px;
+    border-color: #0d1b3e;
+    letter-spacing: 0.04em;
+    padding: 6px 9px;
   }
-  table.gtp .lbl { width: 55%; }
-  .row-num { font-size: 9.5px; color: #888; margin-right: 3px; }
+  table.gtp .sec-hdr.gold-hdr td {
+    background: linear-gradient(90deg, #8a6820 0%, #c9a84c 60%, #8a6820 100%);
+    color: #fff;
+  }
+  table.gtp .lbl { width: 55%; color: #374265; font-size: 10px; }
+  table.gtp td:last-child { font-weight: 500; }
+  .row-num { font-size: 9px; color: #9aa; margin-right: 4px; font-family: 'DM Mono', monospace; }
 
-  .gtp-acc-block { border: 1px solid #000; border-top: none; padding: 8px 10px; }
-  .gtp-acc-block ol { padding-left: 20px; margin: 0; }
-  .gtp-acc-block li { margin: 2px 0; font-size: 10.5px; }
+  /* ── Accessories Block ── */
+  .gtp-acc-block {
+    border: 1px solid #b0b8cc;
+    border-top: none;
+    padding: 10px 12px;
+    background: #f8faff;
+  }
+  .gtp-acc-block ol { padding-left: 22px; margin: 0; }
+  .gtp-acc-block li { margin: 3px 0; font-size: 10.5px; }
 
-  .gtp-notes { border: 1px solid #000; border-top: none; padding: 8px 10px; }
-  .gtp-notes p { margin: 3px 0; font-size: 10.5px; }
+  /* ── Notes ── */
+  .gtp-notes {
+    border: 1px solid #b0b8cc;
+    border-top: 2px solid #0d1b3e;
+    padding: 10px 12px;
+    background: linear-gradient(180deg, #fefdf8 0%, #fff 100%);
+    margin-top: 0;
+  }
+  .gtp-notes strong { color: #0d1b3e; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
+  .gtp-notes p { margin: 3px 0; font-size: 10px; color: #555; padding-left: 8px; border-left: 2px solid #c9a84c; margin-bottom: 4px; }
 
-  .gtp-sig { display: flex; justify-content: space-between; margin-top: 28px; padding-top: 14px; border-top: 1px solid #ccc; }
+  /* ── Signature Block ── */
+  .gtp-sig {
+    display: flex; justify-content: space-between;
+    margin-top: 24px; padding-top: 14px;
+    border-top: 2px solid #0d1b3e;
+    position: relative;
+  }
+  .gtp-sig::before {
+    content: '';
+    position: absolute;
+    top: 3px; left: 0; right: 0;
+    height: 1px;
+    background: var(--gold);
+  }
   .gtp-sig-box { text-align: center; }
-  .gtp-sig-line { border-bottom: 1px solid #000; width: 140px; margin-bottom: 4px; }
-  .gtp-sig-label { font-size: 9.5px; color: #555; }
+  .gtp-sig-line { border-bottom: 1.5px solid #0d1b3e; width: 140px; margin: 0 auto 5px; }
+  .gtp-sig-label { font-size: 9.5px; color: #555; line-height: 1.6; }
+
+  /* ── Footer band ── */
+  .gtp-footer-band {
+    margin-top: 18px;
+    padding: 6px 12px;
+    background: linear-gradient(90deg, #0d1b3e 0%, #1a2f5e 100%);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 8.5px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.05em;
+  }
+  .gtp-footer-band .gold-text { color: var(--gold); font-weight: 600; }
 
   /* ── Responsive ── */
-  @media (max-width: 900px) {
+  @media (max-width: 960px) {
     .layout { grid-template-columns: 1fr; }
     .form-side, .preview-side { height: auto; position: static; }
     .form-grid { grid-template-columns: 1fr; }
+    .form-grid.cols-3 { grid-template-columns: 1fr 1fr; }
     .field.span-2 { grid-column: span 1; }
   }
 
@@ -388,7 +447,6 @@
     body { background: #fff; }
   }
 
-  /* drag-over highlight */
   .acc-item.drag-over { border-color: var(--blue); background: var(--blue-light); }
 </style>
 </head>
@@ -398,11 +456,14 @@
 <nav class="topbar">
   <div class="topbar-brand">
     <div class="logo-box">SKA</div>
-    GTP Transformer Generator
+    <div>
+      GTP Generator
+      <span class="brand-sub">Transformer Technical Particulars</span>
+    </div>
   </div>
   <div class="topbar-actions">
     <button class="btn btn-outline-white" onclick="resetForm()">↺ Reset</button>
-    <button class="btn btn-white" onclick="exportPDF()">⬇ Export PDF</button>
+    <button class="btn btn-gold" onclick="exportPDF()">⬇ Export PDF</button>
   </div>
 </nav>
 
@@ -424,12 +485,7 @@
     <div class="form-body">
 
       <!-- ── TAB: Company ── -->
-    
-  <div id="tab-company" class="tab-pane active">
-        <div class="section-heading">Company Logo</div>
-
-      
-
+      <div id="tab-company" class="tab-pane active">
         <div class="section-heading">Company Details</div>
         <div class="form-grid cols-1">
           <div class="field"><label>Company Name</label><input id="f-companyName" value="SKA TRANSFORMERS Pvt Ltd" oninput="render()"></div>
@@ -441,7 +497,7 @@
           <div class="field"><label>GST Number</label><input id="f-gst" value="27ABRCS1298P1Z8" oninput="render()"></div>
           <div class="field"><label>Reference No.</label><input id="f-refNo" value="" oninput="render()"></div>
           <div class="field"><label>Document Date</label><input id="f-date" type="date" value="" oninput="render()"></div>
-          <div class="field"><label>Applicable Standard</label><input id="f-standard" placeholder="CSA/CAN C227.4 " oninput="render()"></div>
+          <div class="field"><label>Applicable Standard</label><input id="f-standard" placeholder="CSA/CAN C227.4" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Customer / Project Details</div>
@@ -465,8 +521,8 @@
       <div id="tab-ratings" class="tab-pane">
         <div class="section-heading">Electrical Ratings</div>
         <div class="form-grid">
-          <div class="field"><label>Power Rating</label><input id="f-power" placeholder="Power Rating" oninput="render()"></div>
-          <div class="field"><label>Cooling Class</label><input id="f-cooling" placeholder="Cooling class" oninput="render()"></div>
+          <div class="field"><label>Power Rating</label><input id="f-power" placeholder="e.g. 2000 kVA" oninput="render()"></div>
+          <div class="field"><label>Cooling Class</label><input id="f-cooling" placeholder="e.g. ONAN" oninput="render()"></div>
           <div class="field"><label>Temperature Rise</label><input id="f-tempRise" placeholder="65°C" oninput="render()"></div>
           <div class="field"><label>Frequency</label><input id="f-freq" placeholder="60 Hz" oninput="render()"></div>
           <div class="field"><label>Phases</label>
@@ -476,7 +532,7 @@
             </select>
           </div>
           <div class="field"><label>High Voltage Winding</label><input id="f-hv" value="" oninput="render()"></div>
-          <div class="field"><label>Low Voltage  Winding</label><input id="f-lv" value="" oninput="render()"></div>
+          <div class="field"><label>Low Voltage Winding</label><input id="f-lv" value="" oninput="render()"></div>
           <div class="field"><label>Impedance (%)</label><input id="f-impedance" value="5.75% (Tol: ±7.5%)" oninput="render()"></div>
           <div class="field span-2"><label>De-Energized Tap Changer</label><input id="f-tapChanger" placeholder="5 position, 4 Steps, ±2.5% 25kV, BIL 150kV, 75A" oninput="render()"></div>
           <div class="field"><label>Efficiency Standard</label><input id="f-eff" placeholder="CAN/CSAC802" oninput="render()"></div>
@@ -517,28 +573,24 @@
             <select id="f-windMat" onchange="render()">
               <option value="Copper" selected>Copper</option>
               <option value="Aluminium">Aluminium</option>
-              
             </select>
           </div>
           <div class="field"><label>Core Material</label><input id="f-coreMat" placeholder="CRGO M4 and better" oninput="render()"></div>
           <div class="field"><label>Vector Group</label><input id="f-vectorGroup" placeholder="Vector Group" oninput="render()"></div>
           <div class="field"><label>Insulation Class</label><input id="f-insClass" placeholder="" oninput="render()"></div>
         </div>
-
-        
-        
       </div>
 
       <!-- ── TAB: Bushings ── -->
       <div id="tab-bushings" class="tab-pane">
         <div class="section-heading">High Voltage Bushings</div>
         <div class="form-grid cols-1">
-          <div class="field"><label>HV Bushing Class</label><input id="f-hvBush" placeholder="Hv class" oninput="render()"></div>
+          <div class="field"><label>HV Bushing Class</label><input id="f-hvBush" placeholder="HV class" oninput="render()"></div>
         </div>
         <div class="form-grid">
           <div class="field"><label>HV Bushing Current Rating</label><input id="f-surgeStd" placeholder="HV rating" oninput="render()"></div>
           <div class="field"><label>HV Bushing Type</label><input id="f-mcov" placeholder="Bushing type" oninput="render()"></div>
-         </div>
+        </div>
 
         <div class="section-heading">Low Voltage Bushings</div>
         <div class="form-grid">
@@ -575,8 +627,8 @@
             </select>
           </div>
           <div class="field"><label>Oil Volume (litres)</label><input id="f-oilVol" placeholder="e.g. 3200 L" oninput="render()"></div>
-          <div class="field"><label>Oil Flash Point (°C)</label><input id="f-oilFlash" placeholder="e.g. >300°C" oninput="render()"></div>
-          <div class="field"><label>Oil Fire Point (°C)</label><input id="f-oilFire" placeholder="e.g. >350°C" oninput="render()"></div>
+          <div class="field"><label>Oil Flash Point (°C)</label><input id="f-oilFlash" placeholder="e.g. &gt;300°C" oninput="render()"></div>
+          <div class="field"><label>Oil Fire Point (°C)</label><input id="f-oilFire" placeholder="e.g. &gt;350°C" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Weight &amp; Dimensions</div>
@@ -593,10 +645,8 @@
       <!-- ── TAB: Accessories ── -->
       <div id="tab-accessories" class="tab-pane">
         <div class="section-heading">Standard Accessories</div>
-        <p style="font-size:12px;color:#6b7280;margin-bottom:14px">Add accessories using the input below. Drag to reorder. Click ✕ to remove.</p>
-
+        <p style="font-size:12px;color:#6b7590;margin-bottom:14px">Add accessories below. Drag to reorder. Click ✕ to remove.</p>
         <div class="accessories-list" id="accList"></div>
-
         <div class="add-acc-row">
           <input class="add-acc-input" id="newAccInput" placeholder="Type accessory name and click +" onkeydown="if(event.key==='Enter')addAccessory()">
           <button class="add-acc-btn" onclick="addAccessory()" title="Add accessory">+</button>
@@ -621,9 +671,7 @@
         </div>
 
         <div class="section-heading">Standard Notes</div>
-        <div id="notesContainer">
-          <!-- notes added dynamically -->
-        </div>
+        <div id="notesContainer"></div>
         <div class="add-acc-row" style="margin-top:8px">
           <input class="add-acc-input" id="newNoteInput" placeholder="Type a note and click +" onkeydown="if(event.key==='Enter')addNote()">
           <button class="add-acc-btn" onclick="addNote()" title="Add note">+</button>
@@ -631,68 +679,38 @@
 
         <div class="section-heading" style="margin-top:1.5rem">Signature Block</div>
         <div class="form-grid">
-          <div class="field"><label>Prepared By</label><input id="f-preparedBy" placeholder="Prepared by" oninput="render()"></div>
+          <div class="field"><label>Prepared By</label><input id="f-preparedBy" placeholder="Name" oninput="render()"></div>
           <div class="field"><label>Designation</label><input id="f-designation" placeholder="Designation" oninput="render()"></div>
-          <div class="field"><label>Checked By</label><input id="f-checkedBy" placeholder="Checked By" oninput="render()"></div>
-          <div class="field"><label>Approved By</label><input id="f-approvedBy" placeholder="Approved By" oninput="render()"></div>
+          <div class="field"><label>Checked By</label><input id="f-checkedBy" placeholder="Name" oninput="render()"></div>
+          <div class="field"><label>Approved By</label><input id="f-approvedBy" placeholder="Name" oninput="render()"></div>
         </div>
       </div>
 
-    </div><!-- /form-body -->
-  </div><!-- /form-side -->
+    </div>
+  </div>
 
   <!-- ════ PREVIEW SIDE ════ -->
   <div class="preview-side">
     <div class="preview-topbar">
-      <span class="preview-label">▶ Live Preview</span>
+      <span class="preview-label">Live Preview</span>
       <div class="preview-actions">
-        <button class="btn btn-green" onclick="exportPDF()">⬇ Export PDF</button>
+        <button class="btn btn-gold" onclick="exportPDF()">⬇ Export PDF</button>
       </div>
     </div>
     <div id="gtpPreview"></div>
   </div>
 
-</div><!-- /layout -->
+</div>
 
 <script>
 /* ─── STATE ─── */
-let logoDataURL = null;
-
-function handleLogoUpload(e) {
-  const file = e.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = function(ev) {
-    logoDataURL = ev.target.result;
-    // update thumb
-    document.getElementById('logoThumb').innerHTML = `<img src="${logoDataURL}" alt="logo">`;
-    document.getElementById('logoUploadArea').classList.add('has-logo');
-    document.getElementById('btnRemoveLogo').style.display = '';
-    render();
-  };
-  reader.readAsDataURL(file);
-}
-
-function removeLogo() {
-  logoDataURL = null;
-  document.getElementById('logoThumb').innerHTML = '<span>No logo</span>';
-  document.getElementById('logoUploadArea').classList.remove('has-logo');
-  document.getElementById('btnRemoveLogo').style.display = 'none';
-  document.getElementById('logoFileInput').value = '';
-  render();
-}
-
-let accessories = [
- "Gauges"
- 
-];
-
+let accessories = ["Gauges"];
 let notes = [
- "GTP and drawing approval: to be completed within 2 weeks, or 3 weeks, from the date of submission.",
- "Any change in vector group, oil, or bushing type will be charged at extra cost.",
- "This quotation is valid for 30 days.",
- "A variation clause is applicable for copper, core, and oil.",
- "Extra accessories will be provided at additional cost"
+  "GTP and drawing approval: to be completed within 2 weeks, or 3 weeks, from the date of submission.",
+  "Any change in vector group, oil, or bushing type will be charged at extra cost.",
+  "This quotation is valid for 30 days.",
+  "A variation clause is applicable for copper, core, and oil.",
+  "Extra accessories will be provided at additional cost."
 ];
 
 /* ─── TABS ─── */
@@ -705,7 +723,6 @@ function switchTab(name, el) {
 
 /* ─── ACCESSORIES ─── */
 let dragSrc = null;
-
 function renderAccList() {
   const list = document.getElementById('accList');
   list.innerHTML = '';
@@ -714,12 +731,7 @@ function renderAccList() {
     item.className = 'acc-item';
     item.draggable = true;
     item.dataset.idx = i;
-    item.innerHTML = `
-      <span class="acc-drag" title="Drag to reorder">⠿</span>
-      <span class="acc-num">${i + 1}.</span>
-      <input class="acc-input" value="${escapeHtml(acc)}" oninput="updateAcc(${i}, this.value)" placeholder="Accessory name">
-      <button class="acc-del" onclick="deleteAcc(${i})" title="Remove">✕</button>
-    `;
+    item.innerHTML = `<span class="acc-drag" title="Drag to reorder">⠿</span><span class="acc-num">${i+1}.</span><input class="acc-input" value="${escapeHtml(acc)}" oninput="updateAcc(${i},this.value)" placeholder="Accessory name"><button class="acc-del" onclick="deleteAcc(${i})" title="Remove">✕</button>`;
     item.addEventListener('dragstart', onDragStart);
     item.addEventListener('dragover', onDragOver);
     item.addEventListener('drop', onDrop);
@@ -728,238 +740,213 @@ function renderAccList() {
   });
   render();
 }
-
 function addAccessory() {
   const inp = document.getElementById('newAccInput');
-  const val = inp.value.trim();
-  if (!val) { inp.focus(); return; }
-  accessories.push(val);
-  inp.value = '';
-  inp.focus();
-  renderAccList();
+  const val = inp.value.trim(); if (!val) { inp.focus(); return; }
+  accessories.push(val); inp.value = ''; inp.focus(); renderAccList();
 }
-
-function deleteAcc(i) {
-  accessories.splice(i, 1);
-  renderAccList();
-}
-
-function updateAcc(i, val) {
-  accessories[i] = val;
-  render();
-}
-
-function onDragStart(e) { dragSrc = this; this.style.opacity = '0.5'; }
-function onDragEnd(e) { document.querySelectorAll('.acc-item').forEach(el => { el.style.opacity = ''; el.classList.remove('drag-over'); }); }
-function onDragOver(e) { e.preventDefault(); document.querySelectorAll('.acc-item').forEach(el => el.classList.remove('drag-over')); this.classList.add('drag-over'); }
-function onDrop(e) {
-  e.preventDefault();
-  const fromIdx = parseInt(dragSrc.dataset.idx);
-  const toIdx = parseInt(this.dataset.idx);
-  if (fromIdx === toIdx) return;
-  const moved = accessories.splice(fromIdx, 1)[0];
-  accessories.splice(toIdx, 0, moved);
-  renderAccList();
-}
+function deleteAcc(i) { accessories.splice(i,1); renderAccList(); }
+function updateAcc(i,val) { accessories[i]=val; render(); }
+function onDragStart(e) { dragSrc=this; this.style.opacity='0.5'; }
+function onDragEnd(e) { document.querySelectorAll('.acc-item').forEach(el=>{el.style.opacity='';el.classList.remove('drag-over');}); }
+function onDragOver(e) { e.preventDefault(); document.querySelectorAll('.acc-item').forEach(el=>el.classList.remove('drag-over')); this.classList.add('drag-over'); }
+function onDrop(e) { e.preventDefault(); const from=parseInt(dragSrc.dataset.idx),to=parseInt(this.dataset.idx); if(from===to)return; const m=accessories.splice(from,1)[0]; accessories.splice(to,0,m); renderAccList(); }
 
 /* ─── NOTES ─── */
 function renderNotes() {
-  const container = document.getElementById('notesContainer');
-  container.innerHTML = '';
-  notes.forEach((note, i) => {
-    const div = document.createElement('div');
-    div.className = 'acc-item';
-    div.style.marginBottom = '8px';
-    div.innerHTML = `
-      <span class="acc-num">${i + 1}.</span>
-      <input class="acc-input" value="${escapeHtml(note)}" oninput="updateNote(${i}, this.value)">
-      <button class="acc-del" onclick="deleteNote(${i})">✕</button>
-    `;
-    container.appendChild(div);
-  });
-  render();
+  const c = document.getElementById('notesContainer'); c.innerHTML='';
+  notes.forEach((note,i)=>{
+    const div=document.createElement('div'); div.className='acc-item'; div.style.marginBottom='8px';
+    div.innerHTML=`<span class="acc-num">${i+1}.</span><input class="acc-input" value="${escapeHtml(note)}" oninput="updateNote(${i},this.value)"><button class="acc-del" onclick="deleteNote(${i})">✕</button>`;
+    c.appendChild(div);
+  }); render();
 }
-
 function addNote() {
-  const inp = document.getElementById('newNoteInput');
-  const val = inp.value.trim();
-  if (!val) { inp.focus(); return; }
-  notes.push(val);
-  inp.value = '';
-  inp.focus();
-  renderNotes();
+  const inp=document.getElementById('newNoteInput'); const val=inp.value.trim(); if(!val){inp.focus();return;}
+  notes.push(val); inp.value=''; inp.focus(); renderNotes();
 }
-
-function deleteNote(i) { notes.splice(i, 1); renderNotes(); }
-function updateNote(i, val) { notes[i] = val; render(); }
+function deleteNote(i){notes.splice(i,1);renderNotes();}
+function updateNote(i,val){notes[i]=val;render();}
 
 /* ─── HELPERS ─── */
-function g(id) { const el = document.getElementById(id); return el ? el.value : ''; }
-function escapeHtml(str) { return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function fmtDate(ds) {
-  if (!ds) return '';
-  const d = new Date(ds + 'T00:00:00');
-  return [String(d.getDate()).padStart(2,'0'), String(d.getMonth()+1).padStart(2,'0'), d.getFullYear()].join('.');
-}
-function row(num, label, val) {
-  if (!val) return '';
-  return `<tr><td class="lbl"><span class="row-num">${num}</span>${label}</td><td>${val}</td></tr>`;
-}
-function secHdr(num, title) {
-  return `<tr class="sec-hdr"><td colspan="2">${num}. ${title}</td></tr>`;
+function g(id){const el=document.getElementById(id);return el?el.value:'';}
+function escapeHtml(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function fmtDate(ds){if(!ds)return '';const d=new Date(ds+'T00:00:00');return[String(d.getDate()).padStart(2,'0'),String(d.getMonth()+1).padStart(2,'0'),d.getFullYear()].join('.');}
+function row(num,label,val){if(!val)return '';return `<tr><td class="lbl"><span class="row-num">${num}</span>${label}</td><td>${escapeHtml(val)}</td></tr>`;}
+function secHdr(num,title){return `<tr class="sec-hdr"><td colspan="2">${num}. ${title.toUpperCase()}</td></tr>`;}
+
+/* ─── CORNER SVG ─── */
+function cornerSVG(){
+  return `<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M2 2 L8 2 L8 4 L4 4 L4 8 L2 8 Z" fill="#0d1b3e"/>
+    <path d="M2 2 L12 2" stroke="#c9a84c" stroke-width="1.5"/>
+    <path d="M2 2 L2 12" stroke="#c9a84c" stroke-width="1.5"/>
+    <circle cx="2" cy="2" r="2" fill="#c9a84c"/>
+  </svg>`;
 }
 
-/* ─── RENDER PREVIEW ─── */
+/* ─── RENDER ─── */
 function render() {
-  const accHTML = accessories.map((a,i) => a ? `<li>${escapeHtml(a)}</li>` : '').join('');
-  const notesHTML = notes.map((n,i) => n ? `<p>${i+1}. ${escapeHtml(n)}</p>` : '').join('');
-  const hasWarranty = g('f-warranty');
-  const hasDelivery = g('f-delivery');
+  const accHTML = accessories.map(a=>a?`<li>${escapeHtml(a)}</li>`:'').join('');
+  const notesHTML = notes.map((n,i)=>n?`<p>${i+1}. ${escapeHtml(n)}</p>`:'').join('');
+  const hasWarranty = g('f-warranty'), hasDelivery = g('f-delivery');
+  const hasSig = g('f-preparedBy')||g('f-checkedBy')||g('f-approvedBy');
+  const hasLoss = g('f-nll')||g('f-ll')||g('f-totalLoss');
+  const hasDim = g('f-length')||g('f-width')||g('f-height');
+  const hasWeight = g('f-coreWeight')||g('f-totalWeight');
+  const hasCustomer = g('f-customer')||g('f-project')||g('f-po');
+  const hasTests = g('f-fat')||g('f-sat')||g('f-routineTests');
+  const dateStr = fmtDate(g('f-date'))||'—';
 
-  const hasSig = g('f-preparedBy') || g('f-checkedBy') || g('f-approvedBy');
   const sigBlock = hasSig ? `
     <div class="gtp-sig">
-      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Prepared By<br>${escapeHtml(g('f-preparedBy'))}<br>${escapeHtml(g('f-designation'))}</div></div>
-      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Checked By<br>${escapeHtml(g('f-checkedBy'))}</div></div>
-      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Approved By<br>${escapeHtml(g('f-approvedBy'))}</div></div>
+      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Prepared By<br><strong>${escapeHtml(g('f-preparedBy'))}</strong><br>${escapeHtml(g('f-designation'))}</div></div>
+      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Checked By<br><strong>${escapeHtml(g('f-checkedBy'))}</strong></div></div>
+      <div class="gtp-sig-box"><div class="gtp-sig-line"></div><div class="gtp-sig-label">Approved By<br><strong>${escapeHtml(g('f-approvedBy'))}</strong></div></div>
     </div>` : '';
-
-  const hasLoss = g('f-nll') || g('f-ll') || g('f-totalLoss');
-  const hasDim = g('f-length') || g('f-width') || g('f-height');
-  const hasWeight = g('f-coreWeight') || g('f-totalWeight');
-  const hasWR = g('f-hvRes') || g('f-lvRes') || g('f-turnsRatio');
-  const hasCustomer = g('f-customer') || g('f-project') || g('f-po');
-  const hasTests = g('f-fat') || g('f-sat') || g('f-routineTests');
 
   document.getElementById('gtpPreview').innerHTML = `
   <div class="gtp-doc" id="gtpDoc">
+    <div class="gtp-border-frame">
+      <div class="corner-ornament tl">${cornerSVG()}</div>
+      <div class="corner-ornament tr">${cornerSVG()}</div>
+      <div class="corner-ornament bl">${cornerSVG()}</div>
+      <div class="corner-ornament br">${cornerSVG()}</div>
 
-    <div class="gtp-header">
-      <div class="">
-  <img src="skaLogo.webp" alt="Company Logo">
-</div>
-      <div class="gtp-company-block">
-        <div class="gtp-cname">${escapeHtml(g('f-companyName'))}</div>
-        <div class="gtp-cdetails">
-          ${escapeHtml(g('f-address'))}<br>
-          Contact: ${escapeHtml(g('f-contact'))} &nbsp;|&nbsp; Email: ${escapeHtml(g('f-email'))}<br>
-          GST No: ${escapeHtml(g('f-gst'))}
+      <div class="gtp-inner">
+
+        <!-- HEADER -->
+        <div class="gtp-header">
+          <div class="gtp-logo-box">
+            <span style="font-size:13px;font-weight:800;color:#1a56a0;letter-spacing:2px">SKA</span>
+          </div>
+          <div class="gtp-company-block">
+            <div class="gtp-cname">${escapeHtml(g('f-companyName'))}</div>
+            <div class="gtp-cname-underline"></div>
+            <div class="gtp-cdetails">
+              ${escapeHtml(g('f-address'))}<br>
+              ☎ ${escapeHtml(g('f-contact'))} &nbsp;|&nbsp; ✉ ${escapeHtml(g('f-email'))}<br>
+              GST No: <strong>${escapeHtml(g('f-gst'))}</strong>
+            </div>
+          </div>
+          <div class="gtp-ref-block">
+            <strong>Ref. No:</strong> ${escapeHtml(g('f-refNo'))||'—'}<br>
+            <strong>Date:</strong> ${dateStr}<br>
+            ${g('f-rev') ? `<strong>Rev:</strong> ${escapeHtml(g('f-rev'))}` : ''}
+          </div>
         </div>
-      </div>
-      <div class="gtp-ref-block">
-        Ref. No: ${escapeHtml(g('f-refNo'))}<br>
-        Date: ${fmtDate(g('f-date'))}<br>
-        ${g('f-rev') ? 'Rev: ' + escapeHtml(g('f-rev')) : ''}
+
+        <!-- TITLE -->
+        <div class="gtp-title-box">
+          <div class="t1">Guaranteed Technical Particulars</div>
+          <div class="title-rule"></div>
+          <div class="t2">For ${escapeHtml(g('f-power'))} ${escapeHtml(g('f-hv'))}/${escapeHtml(g('f-lv'))} ${escapeHtml(g('f-transType'))}</div>
+          <div class="t3">Applicable Standard – ${escapeHtml(g('f-standard'))}</div>
+        </div>
+
+        ${hasCustomer ? `<table class="gtp" style="margin-bottom:0">
+          ${secHdr('0','Customer / Project Details')}
+          ${row('0.1','Customer Name:', g('f-customer'))}
+          ${row('0.2','Project Name:', g('f-project'))}
+          ${row('0.3','Order / PO Number:', g('f-po'))}
+        </table>` : ''}
+
+        <table class="gtp" style="margin-bottom:0">
+          ${secHdr('1','Environmental Data')}
+          ${row('1.1','Ambient Temperature:', g('f-ambTemp'))}
+          ${row('1.2','Altitude:', g('f-altitude'))}
+          ${row('1.3','Location:', g('f-location'))}
+          ${row('1.4','Type:', g('f-transType'))}
+
+          ${secHdr('2','Electrical Ratings')}
+          ${row('2.1','Power Rating:', g('f-power'))}
+          ${row('2.2','Cooling Class:', g('f-cooling'))}
+          ${row('2.3','Temperature Rise:', g('f-tempRise'))}
+          ${row('2.4','Frequency:', g('f-freq'))}
+          ${row('2.5','Phases:', g('f-phases'))}
+          ${row('2.6','High Voltage (H) Winding:', g('f-hv'))}
+          ${row('2.7','Low Voltage (X & X0) Winding:', g('f-lv'))}
+          ${row('2.8','Impedance:', g('f-impedance'))}
+          ${row('2.9','De-Energized Tap Changer:', g('f-tapChanger'))}
+          ${row('2.10','Efficiency Standard (NLL and LL):', g('f-eff'))}
+          ${row('2.11','Service Voltage (HV):', g('f-svcVoltHV'))}
+
+          ${hasLoss ? secHdr('2a','Loss Data') : ''}
+          ${row('2a.1','No-Load Loss (NLL):', g('f-nll'))}
+          ${row('2a.2','Load Loss (LL) at 100%:', g('f-ll'))}
+          ${row('2a.3','Total Losses:', g('f-totalLoss'))}
+          ${row('2a.4','Exciting Current:', g('f-excCurrent'))}
+          ${row('2a.5','Efficiency at 100% Load:', g('f-effPct'))}
+
+          ${secHdr('3','Insulation Level of Windings')}
+          ${row('3.1','High Voltage (H) Configuration:', g('f-hvConfig'))}
+          ${row('3.2','High Voltage BIL:', g('f-hvBIL'))}
+          ${row('3.3','Low Voltage (X & X0) Configuration:', g('f-lvConfig'))}
+          ${row('3.4','Low Voltage BIL:', g('f-lvBIL'))}
+          ${row('3.5','Winding Material (HV/LV):', g('f-windMat'))}
+          ${row('3.6','Core Material:', g('f-coreMat'))}
+          ${row('3.7','Vector Group:', g('f-vectorGroup'))}
+          ${row('3.8','Insulation Class:', g('f-insClass'))}
+
+          ${secHdr('4','Bushings')}
+          ${row('4.1','HV Bushing Class:', g('f-hvBush'))}
+          ${row('4.2','HV Bushing Current Rating:', g('f-surgeStd'))}
+          ${row('4.3','HV Bushing Type:', g('f-mcov'))}
+          ${row('4.4','LV Bushing Class:', g('f-lvBushClass'))}
+          ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
+          ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
+          ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
+          ${row('4.8','Internal Current Limiting Fuse:', g('f-fuse'))}
+
+          ${secHdr('5','Tank, Oil & Finish')}
+          ${row('5.1','Tank Standard:', g('f-tankStd'))}
+          ${row('5.2','Tank Description:', g('f-tankDesc'))}
+          ${row('5.3','Radiator:', g('f-radiator'))}
+          ${row('5.4','Paint / Finish:', g('f-paint'))}
+          ${row('5.5','Oil / Cooling Fluid:', g('f-oilType'))}
+          ${row('5.6','Oil Volume:', g('f-oilVol'))}
+          ${row('5.7','Oil Flash Point:', g('f-oilFlash'))}
+          ${row('5.8','Oil Fire Point:', g('f-oilFire'))}
+
+          ${(hasDim||hasWeight) ? secHdr('5a','Weight & Dimensions') : ''}
+          ${row('5a.1','Length:', g('f-length'))}
+          ${row('5a.2','Width:', g('f-width'))}
+          ${row('5a.3','Height:', g('f-height'))}
+          ${row('5a.4','Core & Coil Weight:', g('f-coreWeight'))}
+          ${row('5a.5','Tank & Fittings Weight:', g('f-tankWeight'))}
+          ${row('5a.6','Total Weight:', g('f-totalWeight'))}
+
+          ${hasTests ? secHdr('5b','Test Requirements') : ''}
+          ${row('5b.1','Factory Acceptance Test (FAT):', g('f-fat'))}
+          ${row('5b.2','Site Acceptance Test (SAT):', g('f-sat'))}
+          ${row('5b.3','Routine Tests:', g('f-routineTests'))}
+          ${row('5b.4','Special Tests:', g('f-specialTests'))}
+        </table>
+
+        ${accHTML ? `
+        <table class="gtp" style="margin-bottom:0">
+          <tr class="sec-hdr"><td colspan="2">6. STANDARD ACCESSORIES</td></tr>
+        </table>
+        <div class="gtp-acc-block"><ol>${accHTML}</ol></div>` : ''}
+
+        ${(hasWarranty||hasDelivery||notesHTML) ? `
+        <div class="gtp-notes">
+          <strong>📋 Notes &amp; Terms</strong>
+          ${hasWarranty ? `<p><strong>Warranty:</strong> ${escapeHtml(g('f-warranty'))}</p>` : ''}
+          ${hasDelivery ? `<p><strong>Delivery Period:</strong> ${escapeHtml(g('f-delivery'))}</p>` : ''}
+          ${notesHTML}
+        </div>` : ''}
+
+        ${sigBlock}
+
+        <div class="gtp-footer-band">
+          <span class="gold-text">${escapeHtml(g('f-companyName'))}</span>
+          <span>Document Date: ${dateStr}</span>
+          <span>Ref: ${escapeHtml(g('f-refNo'))||'—'}</span>
+        </div>
+
       </div>
     </div>
-
-    <div class="gtp-title-box">
-      <div class="t1">GUARANTEED TECHNICAL PARTICULARS</div>
-      <div class="t2">For ${escapeHtml(g('f-power'))}, ${escapeHtml(g('f-hv'))}/${escapeHtml(g('f-lv'))} ${escapeHtml(g('f-transType'))} </div>
-      <div class="t3">Applicable Standard – ${escapeHtml(g('f-standard'))}</div>
-    </div>
-
-    ${hasCustomer ? `
-    <table class="gtp" style="margin-bottom:0">
-      ${secHdr('0','Customer / Project Details')}
-      ${row('0.1','Customer Name:', g('f-customer'))}
-      ${row('0.2','Project Name:', g('f-project'))}
-      ${row('0.3','Order / PO Number:', g('f-po'))}
-    </table>` : ''}
-
-    <table class="gtp" style="margin-bottom:0">
-      ${secHdr('1','Environmental Data')}
-      ${row('1.1','Ambient Temperature:', g('f-ambTemp'))}
-      ${row('1.2','Altitude:', g('f-altitude'))}
-      ${row('1.3','Location:', g('f-location'))}
-      ${row('1.4','Type:', g('f-transType'))}
-
-      ${secHdr('2','Ratings')}
-      ${row('2.1','Power Rating:', g('f-power'))}
-      ${row('2.2','Cooling Class:', g('f-cooling'))}
-      ${row('2.3','Temperature Rise:', g('f-tempRise'))}
-      ${row('2.4','Frequency:', g('f-freq'))}
-      ${row('2.5','Phases:', g('f-phases'))}
-      ${row('2.6','High Voltage (H) Winding:', g('f-hv'))}
-      ${row('2.7','Low Voltage (X & X0) Winding:', g('f-lv'))}
-      ${row('2.8','Impedance:', g('f-impedance'))}
-      ${row('2.9','De-Energized Tap Changer:', g('f-tapChanger'))}
-      ${row('2.10','Efficiency Standard (NLL and LL):', g('f-eff'))}
-      ${row('2.11','Service Voltage (HV):', g('f-svcVoltHV'))}
-
-      ${hasLoss ? secHdr('2a','Loss Data') : ''}
-      ${row('2a.1','No-Load Loss (NLL):', g('f-nll'))}
-      ${row('2a.2','Load Loss (LL) at 100%:', g('f-ll'))}
-      ${row('2a.3','Total Losses:', g('f-totalLoss'))}
-      ${row('2a.4','Exciting Current:', g('f-excCurrent'))}
-      ${row('2a.5','Efficiency at 100% Load:', g('f-effPct'))}
-
-      ${secHdr('3','Insulation Level of Windings')}
-      ${row('3.1','High Voltage (H) Configuration:', g('f-hvConfig'))}
-      ${row('3.2','High Voltage BIL:', g('f-hvBIL'))}
-      ${row('3.3','Low Voltage (X & X0) Configuration:', g('f-lvConfig'))}
-      ${row('3.4','Low Voltage BIL:', g('f-lvBIL'))}
-      ${row('3.5','Winding Material (HV/LV):', g('f-windMat'))}
-      ${row('3.6','Core Material:', g('f-coreMat'))}
-      ${row('3.7','Vector Group:', g('f-vectorGroup'))}
-      ${row('3.8','Insulation Class:', g('f-insClass'))}
-
-      ${hasWR ? secHdr('3a','Winding Resistance & Turns Ratio') : ''}
-      ${row('3a.1','HV Winding Resistance:', g('f-hvRes'))}
-      ${row('3a.2','LV Winding Resistance:', g('f-lvRes'))}
-      ${row('3a.3','Turns Ratio:', g('f-turnsRatio'))}
-
-      ${secHdr('4','Bushings')}
-      ${row('4.1','HV Bushing Class:', g('f-hvBush'))}
-      ${row('4.2','HV Bushing Current Rating:', g('f-surgeStd'))}
-      ${row('4.3','HV Bushing Type', g('f-mcov'))}
-      ${row('4.4','LV Bushing Class: ', g('f-lvBushClass'))}
-      ${row('4.5','LV Bushing Current Rating: ', g('f-lvBushCurrent'))}
-      ${row('4.6','LV Bushing Type: ', g('f-lvBushType'))}
-      ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-      ${row('4.8','Internal Current Limiting Fuse:', g('f-fuse'))}
-
-      ${secHdr('5','Tank, Oil & Finish')}
-      ${row('5.1','Tank Standard:', g('f-tankStd'))}
-      ${row('5.2','Tank Description:', g('f-tankDesc'))}
-      ${row('5.3','Radiator:', g('f-radiator'))}
-      ${row('5.4','Paint / Finish:', g('f-paint'))}
-      ${row('5.5','Oil / Cooling Fluid:', g('f-oilType'))}
-      ${row('5.6','Oil Volume:', g('f-oilVol'))}
-      ${row('5.7','Oil Flash Point:', g('f-oilFlash'))}
-      ${row('5.8','Oil Fire Point:', g('f-oilFire'))}
-
-      ${hasDim || hasWeight ? secHdr('5a','Weight & Dimensions') : ''}
-      ${row('5a.1','Length:', g('f-length'))}
-      ${row('5a.2','Width:', g('f-width'))}
-      ${row('5a.3','Height:', g('f-height'))}
-      ${row('5a.4','Core & Coil Weight:', g('f-coreWeight'))}
-      ${row('5a.5','Tank & Fittings Weight:', g('f-tankWeight'))}
-      ${row('5a.6','Total Weight:', g('f-totalWeight'))}
-
-      ${hasTests ? secHdr('5b','Test Requirements') : ''}
-      ${row('5b.1','Factory Acceptance Test (FAT):', g('f-fat'))}
-      ${row('5b.2','Site Acceptance Test (SAT):', g('f-sat'))}
-      ${row('5b.3','Routine Tests:', g('f-routineTests'))}
-      ${row('5b.4','Special Tests:', g('f-specialTests'))}
-
-    </table>
-
-    ${accHTML ? `
-    <table class="gtp" style="margin-bottom:0">
-      <tr class="sec-hdr"><td colspan="2">6. Standard Accessories:</td></tr>
-    </table>
-    <div class="gtp-acc-block"><ol>${accHTML}</ol></div>` : ''}
-
-    ${(hasWarranty || hasDelivery || notesHTML) ? `
-    <div class="gtp-notes">
-      <strong>Note:</strong>
-      ${hasWarranty ? `<p>Warranty: ${escapeHtml(g('f-warranty'))}</p>` : ''}
-      ${hasDelivery ? `<p>Delivery Period: ${escapeHtml(g('f-delivery'))}</p>` : ''}
-      ${notesHTML}
-    </div>` : ''}
-
-    ${sigBlock}
   </div>`;
 }
 
@@ -970,37 +957,87 @@ function exportPDF() {
   const title = `GTP - ${g('f-power')} ${g('f-hv')}_${g('f-lv')} Transformer`;
   const w = window.open('', '_blank');
   w.document.write(`<!DOCTYPE html><html><head><title>${title}</title>
-  <style>
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Arial,sans-serif;font-size:11px;color:#000;padding:15mm 12mm;background:#fff}
-    .gtp-header{display:flex;align-items:flex-start;gap:14px;border-bottom:2px solid #000;padding-bottom:10px;margin-bottom:14px}
-    .gtp-logo-box{width:80px;height:80px;border:2px solid #1a56a0;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#1a56a0;flex-shrink:0;overflow:hidden}
-    .gtp-logo-box img{width:100%;height:100%;object-fit:contain;display:block}
-    .gtp-company-block{flex:1;text-align:center}
-    .gtp-cname{font-size:15px;font-weight:bold;text-decoration:underline;margin-bottom:3px}
-    .gtp-cdetails{font-size:9px;line-height:1.7;color:#333}
-    .gtp-ref-block{text-align:right;font-size:9.5px;line-height:1.8;white-space:nowrap}
-    .gtp-title-box{border:1.5px solid #000;padding:10px;text-align:center;margin-bottom:12px}
-    .gtp-title-box .t1{font-size:14px;font-weight:bold;margin-bottom:3px}
-    .gtp-title-box .t2{font-size:12px;font-weight:bold;margin-bottom:2px}
-    .gtp-title-box .t3{font-size:10.5px}
-    table.gtp{width:100%;border-collapse:collapse}
-    table.gtp td{border:1px solid #000;padding:4px 7px;vertical-align:top}
-    table.gtp .sec-hdr td{background:#e8edf4;font-weight:bold;font-size:11px}
-    .lbl{width:55%}
-    .row-num{font-size:9.5px;color:#888;margin-right:3px}
-    .gtp-acc-block{border:1px solid #000;border-top:none;padding:7px 10px}
-    .gtp-acc-block ol{padding-left:20px;margin:0}
-    .gtp-acc-block li{margin:2px 0;font-size:10.5px}
-    .gtp-notes{border:1px solid #000;border-top:none;padding:7px 10px}
-    .gtp-notes p{margin:3px 0;font-size:10.5px}
-    .gtp-sig{display:flex;justify-content:space-between;margin-top:28px;padding-top:14px;border-top:1px solid #ccc}
-    .gtp-sig-box{text-align:center}
-    .gtp-sig-line{border-bottom:1px solid #000;width:140px;margin-bottom:4px}
-    .gtp-sig-label{font-size:9.5px;color:#555}
-    @page{margin:10mm}
-  </style></head><body>`);
-  w.document.write(doc.outerHTML);
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Arial,sans-serif;font-size:11px;color:#000;background:#fff;padding:0}
+  
+  /* ── Outer border frame ── */
+  .gtp-border-frame{
+    padding:14mm 12mm;
+    position:relative;
+    min-height:100vh;
+  }
+  .gtp-border-frame::before{
+    content:'';position:fixed;
+    top:8mm;left:8mm;right:8mm;bottom:8mm;
+    border:3px solid #0d1b3e;
+    pointer-events:none;z-index:9999;
+  }
+  .gtp-border-frame::after{
+    content:'';position:fixed;
+    top:11mm;left:11mm;right:11mm;bottom:11mm;
+    border:1px solid #c9a84c;
+    pointer-events:none;z-index:9999;
+  }
+
+  /* Corner ornaments via before/after on pseudo wrapper */
+  .corner-ornament{position:fixed;width:22px;height:22px;z-index:10000;pointer-events:none;}
+  .corner-ornament.tl{top:5.5mm;left:5.5mm;}
+  .corner-ornament.tr{top:5.5mm;right:5.5mm;transform:scaleX(-1);}
+  .corner-ornament.bl{bottom:5.5mm;left:5.5mm;transform:scaleY(-1);}
+  .corner-ornament.br{bottom:5.5mm;right:5.5mm;transform:scale(-1);}
+
+  .gtp-header{display:flex;align-items:center;gap:14px;border-bottom:3px double #0d1b3e;padding-bottom:10px;margin-bottom:12px;position:relative;}
+  .gtp-header::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:1px;background:#c9a84c;}
+  .gtp-logo-box{width:80px;height:80px;border:2px solid #1a56a0;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;color:#1a56a0;flex-shrink:0;overflow:hidden;background:#f0f5fc;letter-spacing:2px;}
+  .gtp-logo-box img{width:100%;height:100%;object-fit:contain;}
+  .gtp-company-block{flex:1;text-align:center;}
+  .gtp-cname{font-size:15px;font-weight:bold;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:3px;}
+  .gtp-cname-underline{width:60%;height:1px;background:linear-gradient(90deg,transparent,#0d1b3e 20%,#c9a84c 50%,#0d1b3e 80%,transparent);margin:0 auto 6px;}
+  .gtp-cdetails{font-size:9px;line-height:1.8;color:#333;}
+  .gtp-ref-block{text-align:right;font-size:9.5px;line-height:2;white-space:nowrap;background:#f0f5fc;border:1px solid #c8cedb;border-radius:4px;padding:5px 9px;min-width:120px;}
+
+  .gtp-title-box{border:2px solid #0d1b3e;padding:12px;text-align:center;margin-bottom:12px;position:relative;background:linear-gradient(180deg,#f0f5fc 0%,#fff 100%);}
+  .gtp-title-box::before{content:'';position:absolute;inset:3px;border:1px solid #c9a84c;pointer-events:none;}
+  .gtp-title-box .t1{font-size:14px;font-weight:bold;text-transform:uppercase;letter-spacing:0.08em;color:#0d1b3e;margin-bottom:4px;}
+  .title-rule{width:80px;height:2px;background:linear-gradient(90deg,#c9a84c,#0d1b3e);margin:5px auto;border-radius:1px;}
+  .gtp-title-box .t2{font-size:12px;font-weight:bold;margin-bottom:2px;}
+  .gtp-title-box .t3{font-size:10px;color:#555;}
+
+  table.gtp{width:100%;border-collapse:collapse;}
+  table.gtp td{border:1px solid #b0b8cc;padding:4px 8px;vertical-align:top;font-size:10.5px;}
+  table.gtp .sec-hdr td{background:linear-gradient(90deg,#0d1b3e 0%,#1a2f5e 100%);color:#fff;font-weight:bold;font-size:11px;border-color:#0d1b3e;letter-spacing:0.04em;padding:5px 8px;}
+  .lbl{width:55%;color:#374265;font-size:10px;}
+  table.gtp td:last-child{font-weight:500;}
+  .row-num{font-size:9px;color:#9aa;margin-right:4px;}
+
+  .gtp-acc-block{border:1px solid #b0b8cc;border-top:none;padding:8px 10px;background:#f8faff;}
+  .gtp-acc-block ol{padding-left:22px;margin:0;}
+  .gtp-acc-block li{margin:3px 0;font-size:10.5px;}
+
+  .gtp-notes{border:1px solid #b0b8cc;border-top:2px solid #0d1b3e;padding:8px 10px;background:linear-gradient(180deg,#fefdf8 0%,#fff 100%);}
+  .gtp-notes strong{color:#0d1b3e;font-size:10px;text-transform:uppercase;letter-spacing:0.05em;display:block;margin-bottom:4px;}
+  .gtp-notes p{margin:3px 0 5px;font-size:10px;color:#555;padding-left:8px;border-left:2px solid #c9a84c;}
+
+  .gtp-sig{display:flex;justify-content:space-between;margin-top:22px;padding-top:12px;border-top:2px solid #0d1b3e;position:relative;}
+  .gtp-sig::before{content:'';position:absolute;top:3px;left:0;right:0;height:1px;background:#c9a84c;}
+  .gtp-sig-box{text-align:center;}
+  .gtp-sig-line{border-bottom:1.5px solid #0d1b3e;width:140px;margin:0 auto 4px;}
+  .gtp-sig-label{font-size:9.5px;color:#555;line-height:1.6;}
+
+  .gtp-footer-band{margin-top:16px;padding:6px 10px;background:linear-gradient(90deg,#0d1b3e 0%,#1a2f5e 100%);display:flex;justify-content:space-between;align-items:center;font-size:8.5px;color:rgba(255,255,255,0.75);letter-spacing:0.04em;}
+  .gold-text{color:#c9a84c;font-weight:600;}
+
+  @page{margin:5mm;size:A4}
+  @media print{
+    .gtp-border-frame::before,.gtp-border-frame::after{position:fixed;}
+    .corner-ornament{position:fixed;}
+  }
+</style></head><body>`);
+
+  // Rebuild the inner content cleanly for print
+  const inner = document.getElementById('gtpDoc');
+  w.document.write(inner.outerHTML);
   w.document.write('</body></html>');
   w.document.close();
   w.onload = () => { w.focus(); w.print(); };
@@ -1016,7 +1053,6 @@ function resetForm() {
 renderAccList();
 renderNotes();
 render();
-
 document.getElementById('accList').addEventListener('input', render);
 </script>
 </body>
