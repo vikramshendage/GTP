@@ -244,22 +244,47 @@ td {
      GTP DOCUMENT — PREMIUM BORDERED LAYOUT
   ───────────────────────────────────────── */
   .gtp-doc {
-    background: #fff;
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    color: #000;
-    line-height: 1.4;
-    box-shadow: var(--shadow-lg), 0 0 0 1px rgba(13,27,62,0.08);
-    border-radius: 6px;
-    overflow: hidden;
-    position: relative;
+    width:210mm;
+    min-height:297mm;
+    margin:0 auto 20px auto;
+    background:#fff;
+    position:relative;
+    overflow:visible;
+    box-shadow:0 0 12px rgba(0,0,0,0.15);
+    page-break-after:auto;
   }
+
+ .gtp-doc::before{
+    content:'';
+    position:absolute;
+    top:10mm;
+    left:10mm;
+    right:10mm;
+    bottom:10mm;
+    border:3px solid #0d1b3e;
+    pointer-events:none;
+    z-index:1;
+}
+
+ .gtp-doc::after{
+    content:'';
+    position:absolute;
+    top:14mm;
+    left:14mm;
+    right:14mm;
+    bottom:14mm;
+    border:1px solid #c9a84c;
+    pointer-events:none;
+    z-index:1;
+}
 
   /* Outer decorative border frame */
   .gtp-border-frame {
-    padding:14mm 12mm;
     position:relative;
-    min-height:auto;
+    z-index:2;
+    padding:18mm 16mm;
+    min-height:297mm;
+    box-sizing:border-box;
   }
 
   /* Triple-line border effect */
@@ -282,10 +307,7 @@ td {
 
   /* Corner ornaments */
   .corner-ornament {
-    position: absolute;
-    width: 22px; height: 22px;
-    z-index: 2;
-    pointer-events: none;
+    display:none;
   }
   .corner-ornament.tl { top: 3px; left: 3px; }
   .corner-ornament.tr { top: 3px; right: 3px; transform: scaleX(-1); }
@@ -366,12 +388,18 @@ td {
   .gtp-title-box .t3 { font-size: 10px; color: #555; }
 
   /* ── Tables ── */
-  table.gtp { width: 100%; border-collapse: collapse; }
+  table.gtp { 
+   width:100%;
+   border-collapse:collapse;
+   page-break-inside:auto;
+  }
+ table.gtp tr{
+    page-break-inside:avoid;
+    page-break-after:auto;
+  }
   table.gtp td {
-    border: 1px solid #b0b8cc;
-    padding: 4.5px 9px;
-    vertical-align: top;
-    font-size: 10.5px;
+  page-break-inside:avoid;
+}
   }
   table.gtp tr:hover td { background: #f8faff; }
   table.gtp .sec-hdr td {
@@ -393,31 +421,21 @@ td {
 
   /* ── Accessories Block ── */
   .gtp-acc-block {
-    border: 1px solid #b0b8cc;
-    border-top: none;
-    padding: 10px 12px;
-    background: #f8faff;
+     page-break-inside:avoid;
   }
   .gtp-acc-block ol { padding-left: 22px; margin: 0; }
   .gtp-acc-block li { margin: 3px 0; font-size: 10.5px; }
 
   /* ── Notes ── */
   .gtp-notes {
-    border: 1px solid #b0b8cc;
-    border-top: 2px solid #0d1b3e;
-    padding: 10px 12px;
-    background: linear-gradient(180deg, #fefdf8 0%, #fff 100%);
-    margin-top: 0;
+    page-break-inside:avoid;
   }
   .gtp-notes strong { color: #0d1b3e; font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 4px; }
   .gtp-notes p { margin: 3px 0; font-size: 10px; color: #555; padding-left: 8px; border-left: 2px solid #c9a84c; margin-bottom: 4px; }
 
   /* ── Signature Block ── */
   .gtp-sig {
-    display: flex; justify-content: space-between;
-    margin-top: 24px; padding-top: 14px;
-    border-top: 2px solid #0d1b3e;
-    position: relative;
+    page-break-inside:avoid;
   }
   .gtp-sig::before {
     content: '';
@@ -1121,6 +1139,39 @@ table.gtp td {
 
   @page{margin:5mm;size:A4}
   @media print{
+
+ body{
+        background:#fff;
+    }
+
+    .gtp-doc{
+        width:210mm;
+        min-height:297mm;
+
+        margin:0;
+
+        box-shadow:none;
+
+        overflow:visible;
+
+        break-after:page;
+    }
+
+    .gtp-doc:last-child{
+        break-after:auto;
+    }
+
+    .preview-side{
+        padding:0;
+        background:#fff;
+    }
+
+    @page{
+        size:A4;
+        margin:0;
+    }
+
+  
    .gtp-doc{
     overflow:visible;
 }
