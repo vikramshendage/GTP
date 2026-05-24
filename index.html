@@ -537,14 +537,13 @@ td {
           <div class="field"><label>Contact No.</label><input id="f-contact" value="+91 87665 83894" oninput="render()"></div>
           <div class="field"><label>Email</label><input id="f-email" value="director@skatransformers.com" oninput="render()"></div>
           <div class="field"><label>GST Number</label><input id="f-gst" value="27ABRCS1298P1Z8" oninput="render()"></div>
-          <div class="field"><label>Reference No.</label><input id="f-refNo" value="" oninput="render()"></div>
+          <div class="field"><label>Order / PO Number.</label><input id="f-refNo" value="" oninput="render()"></div>
           <div class="field"><label>Document Date</label><input id="f-date" type="date" value="" oninput="render()"></div>
           <div class="field"><label>Applicable Standard</label><input id="f-standard" value="CSA/CAN C88-16" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Customer / Project Details</div>
         <div class="form-grid">
-          <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="e.g. PO-2025-001" oninput="render()"></div>
           <div class="field"><label>Revision No.</label><input id="f-rev" value="" oninput="render()"></div>
         </div>
 
@@ -904,7 +903,7 @@ function render() {
             </div>
           </div>
           <div class="gtp-ref-block">
-            <strong>Ref. No:</strong> ${escapeHtml(g('f-refNo'))||'—'}<br>
+            <strong>PO no</strong> ${escapeHtml(g('f-refNo'))||'—'}<br>
             <strong>Date:</strong> ${dateStr}<br>
             ${g('f-rev') ? `<strong>Rev:</strong> ${escapeHtml(g('f-rev'))}` : ''}
           </div>
