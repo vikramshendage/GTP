@@ -544,7 +544,6 @@ td {
 
         <div class="section-heading">Customer / Project Details</div>
         <div class="form-grid">
-          <div class="field"><label>Project Name</label><input id="f-project" placeholder="e.g. Substation Expansion" oninput="render()"></div>
           <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="e.g. PO-2025-001" oninput="render()"></div>
           <div class="field"><label>Revision No.</label><input id="f-rev" value="" oninput="render()"></div>
         </div>
@@ -577,7 +576,6 @@ td {
           <div class="field"><label>Impedance (%)</label><input id="f-impedance" value="5.75% (Tol: ±7.5%)" oninput="render()"></div>
           <div class="field span-2"><label>De-Energized Tap Changer</label><input id="f-tapChanger" value="5 position, 4 Steps, ±2.5% 25kV, BIL 150kV, 75A" oninput="render()"></div>
           <div class="field"><label>Efficiency Standard</label><input id="f-eff" value="CAN/CSAC802" oninput="render()"></div>
-          <div class="field"><label>Service Voltage (HV)</label><input id="f-svcVoltHV" placeholder="e.g. 24.9kV" oninput="render()"></div>
         </div>
 
         <div class="section-heading">Loss Data</div>
@@ -585,7 +583,6 @@ td {
           <div class="field"><label>No-Load Loss (NLL) — W</label><input id="f-nll" placeholder="e.g. 3500 W" oninput="render()"></div>
           <div class="field"><label>Load Loss (LL) at 100% — W</label><input id="f-ll" placeholder="e.g. 22000 W" oninput="render()"></div>
           <div class="field"><label>Total Losses — W</label><input id="f-totalLoss" placeholder="e.g. 25500 W" oninput="render()"></div>
-          <div class="field"><label>Exciting Current (%)</label><input id="f-excCurrent" placeholder="e.g. 0.5%" oninput="render()"></div>
           <div class="field"><label>Efficiency at 100% Load (%)</label><input id="f-effPct" placeholder="e.g. 99.15%" oninput="render()"></div>
         </div>
       </div>
@@ -618,7 +615,6 @@ td {
           </div>
           <div class="field"><label>Core Material</label><input id="f-coreMat" placeholder="CRGO M4 and better" oninput="render()"></div>
           <div class="field"><label>Vector Group</label><input id="f-vectorGroup" placeholder="Vector Group" oninput="render()"></div>
-          <div class="field"><label>Insulation Class</label><input id="f-insClass" placeholder="" oninput="render()"></div>
         </div>
       </div>
 
@@ -641,10 +637,7 @@ td {
           <div class="field"><label>No. of Holes (LV)</label><input id="f-lvBushHoles" placeholder="To be confirmed" oninput="render()"></div>
         </div>
 
-        <div class="section-heading">Fuse &amp; Protection</div>
-        <div class="form-grid cols-1">
-          <div class="field"><label>Internal Current Limiting Fuse</label><input id="f-fuse" placeholder="CLF, Load Break Switch, Bayonet Fuse" oninput="render()"></div>
-        </div>
+        
       </div>
 
       <!-- ── TAB: Tank ── -->
@@ -695,12 +688,7 @@ td {
         <p class="acc-hint">Press Enter or click + to add. Drag items to reorder.</p>
 
         <div class="section-heading" style="margin-top:1.5rem">Test Requirements</div>
-        <div class="form-grid cols-1">
-          <div class="field"><label>Factory Acceptance Test (FAT)</label><input id="f-fat" placeholder="e.g. As per CSA/CAN C227.4 standard" oninput="render()"></div>
-          <div class="field"><label>Site Acceptance Test (SAT)</label><input id="f-sat" placeholder="e.g. Insulation resistance, turns ratio" oninput="render()"></div>
-          <div class="field"><label>Routine Tests</label><input id="f-routineTests" placeholder="e.g. Ratio, winding resistance, dielectric" oninput="render()"></div>
-          <div class="field"><label>Special Tests (if any)</label><input id="f-specialTests" placeholder="e.g. Temperature rise test" oninput="render()"></div>
-        </div>
+        
       </div>
 
       <!-- ── TAB: Notes ── -->
@@ -933,8 +921,8 @@ function render() {
         ${hasCustomer ? `<table class="gtp" style="margin-bottom:0">
           ${secHdr('','Project Details')}
          
-          ${row('','Project Name:', g('f-project'))}
-          ${row('','Order / PO Number:', g('f-po'))}
+         
+        
         </table>` : ''}
 
         <table class="gtp" style="margin-bottom:0">
@@ -955,7 +943,7 @@ function render() {
           ${row('2.8','Impedance:', g('f-impedance'))}
           ${row('2.9','De-Energized Tap Changer:', g('f-tapChanger'))}
           ${row('2.10','Efficiency Standard (NLL and LL):', g('f-eff'))}
-          ${row('2.11','Service Voltage (HV):', g('f-svcVoltHV'))}
+        
 
           ${sec('2a')}${hasLoss ? `<tr class="sec-hdr"><td colspan="2">2a. LOSS DATA</td></tr>` : ''}
           ${row('2a.1','No-Load Loss (NLL):', g('f-nll'))}
@@ -982,7 +970,7 @@ function render() {
           ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
           ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
           ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-          ${row('4.8','Internal Current Limiting Fuse:', g('f-fuse'))}
+          
 
           ${secHdr('5','Tank, Oil & Finish')}
           ${row('5.1','Tank Standard:', g('f-tankStd'))}
@@ -991,8 +979,8 @@ function render() {
           ${row('5.4','Paint / Finish:', g('f-paint'))}
           ${row('5.5','Oil / Cooling Fluid:', g('f-oilType'))}
           ${row('5.6','Oil Volume:', g('f-oilVol'))}
-          ${row('5.7','Oil Flash Point:', g('f-oilFlash'))}
-          ${row('5.8','Oil Fire Point:', g('f-oilFire'))}
+         
+         
 
           ${sec('5a')}${(hasDim||hasWeight) ? `<tr class="sec-hdr"><td colspan="2">5a. WEIGHT &amp; DIMENSIONS</td></tr>` : ''}
           ${row('5a.1','Length:', g('f-length'))}
@@ -1003,10 +991,7 @@ function render() {
           ${row('5a.6','Total Weight:', g('f-totalWeight'))}
 
           ${sec('5b')}${hasTests ? `<tr class="sec-hdr"><td colspan="2">5b. TEST REQUIREMENTS</td></tr>` : ''}
-          ${row('5b.1','Factory Acceptance Test (FAT):', g('f-fat'))}
-          ${row('5b.2','Site Acceptance Test (SAT):', g('f-sat'))}
-          ${row('5b.3','Routine Tests:', g('f-routineTests'))}
-          ${row('5b.4','Special Tests:', g('f-specialTests'))}
+     
         </table>
 
         ${accHTML ? `
