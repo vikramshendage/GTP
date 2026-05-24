@@ -1249,8 +1249,11 @@ table.gtp{
 </style></head><body>`);
 
   // Rebuild the inner content cleanly for print
-  const inner = document.getElementById('gtpDoc');
-  w.document.write(inner.outerHTML);
+const pages = document.querySelectorAll('.gtp-doc');
+
+pages.forEach(page => {
+    w.document.write(page.outerHTML);
+});
   w.document.write('</body></html>');
   w.document.close();
   w.onload = () => { w.focus(); w.print(); };
