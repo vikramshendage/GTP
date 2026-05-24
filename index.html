@@ -430,8 +430,10 @@ td {
 
   /* ── Accessories Block ── */
   .page-break {
-    page-break-before: always;
-    break-before: page;
+     display:block;
+    height:0;
+    page-break-before:always;
+    break-before:page;
 }
   .gtp-acc-block ol { padding-left: 22px; margin: 0; }
   .gtp-acc-block li { margin: 3px 0; font-size: 10.5px; }
@@ -978,7 +980,11 @@ function render() {
           ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
           ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
           ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-          <div class="page-break"></div>
+          </table>
+
+<div class="page-break"></div>
+
+<table class="gtp" style="margin-bottom:0">
 
           ${secHdr('5','Tank, Oil & Finish')}
           ${row('5.1','Tank Standard:', g('f-tankStd'))}
