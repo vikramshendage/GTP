@@ -514,7 +514,6 @@
 
         <div class="section-heading">Customer / Project Details</div>
         <div class="form-grid">
-          <div class="field"><label>Customer Name</label><input id="f-customer" placeholder="e.g. ABC Power Corp" oninput="render()"></div>
           <div class="field"><label>Project Name</label><input id="f-project" placeholder="e.g. Substation Expansion" oninput="render()"></div>
           <div class="field"><label>Order / PO Number</label><input id="f-po" placeholder="e.g. PO-2025-001" oninput="render()"></div>
           <div class="field"><label>Revision No.</label><input id="f-rev" value="" oninput="render()"></div>
@@ -899,10 +898,10 @@ function render() {
         </div>
 
         ${hasCustomer ? `<table class="gtp" style="margin-bottom:0">
-          ${secHdr('0','Customer / Project Details')}
-          ${row('0.1','Customer Name:', g('f-customer'))}
-          ${row('0.2','Project Name:', g('f-project'))}
-          ${row('0.3','Order / PO Number:', g('f-po'))}
+          ${secHdr('','Project Details')}
+         
+          ${row('','Project Name:', g('f-project'))}
+          ${row('','Order / PO Number:', g('f-po'))}
         </table>` : ''}
 
         <table class="gtp" style="margin-bottom:0">
@@ -912,14 +911,14 @@ function render() {
           ${row('1.3','Location:', g('f-location'))}
           ${row('1.4','Type:', g('f-transType'))}
 
-          ${secHdr('2','Electrical Ratings')}
-          ${row('2.1','Power Rating:', g('f-power'))}
+          ${secHdr('2','Ratings')}
+          ${row('2.1','Power Rating(MVA):', g('f-power'))}
           ${row('2.2','Cooling Class:', g('f-cooling'))}
           ${row('2.3','Temperature Rise:', g('f-tempRise'))}
           ${row('2.4','Frequency:', g('f-freq'))}
           ${row('2.5','Phases:', g('f-phases'))}
-          ${row('2.6','High Voltage (H) Winding:', g('f-hv'))}
-          ${row('2.7','Low Voltage (X & X0) Winding:', g('f-lv'))}
+          ${row('2.6','High Voltage Winding:', g('f-hv'))}
+          ${row('2.7','Low Voltage Winding:', g('f-lv'))}
           ${row('2.8','Impedance:', g('f-impedance'))}
           ${row('2.9','De-Energized Tap Changer:', g('f-tapChanger'))}
           ${row('2.10','Efficiency Standard (NLL and LL):', g('f-eff'))}
@@ -933,9 +932,9 @@ function render() {
           ${row('2a.5','Efficiency at 100% Load:', g('f-effPct'))}
 
           ${secHdr('3','Insulation Level of Windings')}
-          ${row('3.1','High Voltage (H) Configuration:', g('f-hvConfig'))}
+          ${row('3.1','High Voltage Configuration:', g('f-hvConfig'))}
           ${row('3.2','High Voltage BIL:', g('f-hvBIL'))}
-          ${row('3.3','Low Voltage (X & X0) Configuration:', g('f-lvConfig'))}
+          ${row('3.3','Low Voltage Configuration:', g('f-lvConfig'))}
           ${row('3.4','Low Voltage BIL:', g('f-lvBIL'))}
           ${row('3.5','Winding Material (HV/LV):', g('f-windMat'))}
           ${row('3.6','Core Material:', g('f-coreMat'))}
