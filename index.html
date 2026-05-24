@@ -32,6 +32,18 @@
     --shadow-lg:  0 6px 32px rgba(13,27,62,0.16);
   }
 
+ table {
+    page-break-inside: auto;
+}
+
+tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+}
+
+td {
+    page-break-inside: avoid;
+}
   body {
     font-family: 'DM Sans', 'Segoe UI', sans-serif;
     background: #e8edf5;
@@ -1024,23 +1036,24 @@ function exportPDF() {
   .gtp-border-frame{
     padding:14mm 12mm;
     position:relative;
-    min-height:100vh;
+    min-height:auto;
+    page-break-after:auto;
   }
   .gtp-border-frame::before{
-    content:'';position:fixed;
+    content:'';position:absolute;
     top:8mm;left:8mm;right:8mm;bottom:8mm;
     border:3px solid #0d1b3e;
     pointer-events:none;z-index:9999;
   }
   .gtp-border-frame::after{
-    content:'';position:fixed;
+    content:'';position:absolute;
     top:11mm;left:11mm;right:11mm;bottom:11mm;
     border:1px solid #c9a84c;
     pointer-events:none;z-index:9999;
   }
 
   /* Corner ornaments via before/after on pseudo wrapper */
-  .corner-ornament{position:fixed;width:22px;height:22px;z-index:10000;pointer-events:none;}
+  .corner-ornament{position:absolute;width:22px;height:22px;z-index:10000;pointer-events:none;}
   .corner-ornament.tl{top:5.5mm;left:5.5mm;}
   .corner-ornament.tr{top:5.5mm;right:5.5mm;transform:scaleX(-1);}
   .corner-ornament.bl{bottom:5.5mm;left:5.5mm;transform:scaleY(-1);}
@@ -1089,8 +1102,20 @@ function exportPDF() {
 
   @page{margin:5mm;size:A4}
   @media print{
-    .gtp-border-frame::before,.gtp-border-frame::after{position:fixed;}
-    .corner-ornament{position:fixed;}
+   .gtp-doc{
+    overflow:visible !important;
+}
+
+table.gtp{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.gtp-acc-block,
+.gtp-notes,
+.gtp-sig{
+    page-break-inside: avoid;
+}
   }
 </style></head><body>`);
 
