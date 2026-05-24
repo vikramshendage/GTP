@@ -313,10 +313,8 @@ td {
   .corner-ornament.bl { bottom: 3px; left: 3px; transform: scaleY(-1); }
   .corner-ornament.br { bottom: 3px; right: 3px; transform: scale(-1); }
 
-  .gtp-inner {  height: 255mm;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column; }
+  .gtp-inner {   min-height:255mm;
+    overflow:visible; }
 
   /* ── Header ── */
   .gtp-header {
@@ -980,7 +978,7 @@ function render() {
           ${row('4.5','LV Bushing Current Rating:', g('f-lvBushCurrent'))}
           ${row('4.6','LV Bushing Type:', g('f-lvBushType'))}
           ${row('4.7','No. of Holes (LV Bushing):', g('f-lvBushHoles'))}
-          </table>
+   </table>
 
 <div class="page-break"></div>
 
@@ -1139,6 +1137,13 @@ table.gtp td {
 
   @page{margin:5mm;size:A4}
   @media print{
+
+  .page-break{
+    display:block;
+    page-break-before:always;
+    break-before:page;
+    height:0;
+}
 
  body{
         background:#fff;
