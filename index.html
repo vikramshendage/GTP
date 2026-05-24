@@ -1062,40 +1062,13 @@ function render() {
         </table>
         <div class="gtp-acc-block"><ol>${accHTML}</ol></div>` : ''}
 
-       ${(hasWarranty||hasDelivery||notesHTML) ? `
-
-${notes.length > 7 ? `
-
-</div>
-</div>
-</div>
-
-<div class="gtp-doc">
-  <div class="gtp-border-frame">
-    <div class="gtp-inner">
-
-` : ''}
-
-<div class="gtp-notes">
-  <strong>📋 Notes &amp; Terms</strong>
-
-  ${hasWarranty ? `
-  <p>
-    <strong>Warranty:</strong>
-    ${escapeHtml(g('f-warranty'))}
-  </p>` : ''}
-
-  ${hasDelivery ? `
-  <p>
-    <strong>Delivery Period:</strong>
-    ${escapeHtml(g('f-delivery'))}
-  </p>` : ''}
-
-  ${notesHTML}
-
-</div>
-
-` : ''}
+        ${(hasWarranty||hasDelivery||notesHTML) ? `
+        <div class="gtp-notes">
+          <strong>📋 Notes &amp; Terms</strong>
+          ${hasWarranty ? `<p><strong>Warranty:</strong> ${escapeHtml(g('f-warranty'))}</p>` : ''}
+          ${hasDelivery ? `<p><strong>Delivery Period:</strong> ${escapeHtml(g('f-delivery'))}</p>` : ''}
+          ${notesHTML}
+        </div>` : ''}
 
         ${sigBlock}
 
