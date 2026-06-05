@@ -641,7 +641,6 @@ td {
           <div class="field"><label>Power Factor</label><input id="f-powerFactor" value="0.8" oninput="calculateEfficiency()"></div>
            <div class="field"><label>Max Losses at 100% Loading</label><input id="f-maxLosses" readonly></div>
           <div class="field"><label>Max Losses at 50% Loading</label><input id="f-loss50" readonly></div>
-            <div class="field"><label>Load at which Max Efficiency Occurs</label><input id="f-loadAtMaxEff" readonly></div>
            <div class="field span-2"><label>Maximum Efficiency</label><input id="f-maxEfficiency" readonly></div>
           
        </div>
@@ -1102,10 +1101,10 @@ ${row('4.1','UPF 100% Efficiency:', g('f-EFF100'))}
 ${row('4.2','UPF 75% Efficiency:', g('f-EFF75'))}
 ${row('4.3','UPF 50% Efficiency:', g('f-EFF50'))}
 ${row('4.4','UPF 35% Efficiency:', g('f-Eff25'))}
-${row('4.5','PF 100% Efficiency:', g('pf100'))}
-${row('4.6','PF 75% Efficiency:', g('pf75'))}
-${row('4.7','PF 50% Efficiency:', g('pf50'))}
-${row('4.8','PF 35% Efficiency:', g('pf25'))}
+${row('4.5','Lagging PF 100% Efficiency:', g('pf100'))}
+${row('4.6','Lagging PF 75% Efficiency:', g('pf75'))}
+${row('4.7','Lagging PF 50% Efficiency:', g('pf50'))}
+${row('4.8','Lagging PF 35% Efficiency:', g('pf25'))}
 
 </table>
 
@@ -1127,10 +1126,10 @@ ${row('5.1','UPF Regulation (100% Load):', g('reg100'))}
 ${row('5.2','UPF Regulation (75% Load):', g('reg75'))}
 ${row('5.3','UPF Regulation (50% Load):', g('reg50'))}
 ${row('5.4','UPF Regulation (35% Load):', g('reg35'))}
-${row('5.5','PF Regulation (100% Load):', g('pfreg100'))}
-${row('5.6','PF Regulation (75% Load):', g('pfreg75'))}
-${row('5.7','PF Regulation (50% Load):', g('pfreg50'))}
-${row('5.8','PF Regulation (35% Load):', g('pfreg35'))}
+${row('5.5','Lagging PF Regulation (100% Load):', g('pfreg100'))}
+${row('5.6','Lagging PF Regulation (75% Load):', g('pfreg75'))}
+${row('5.7','Lagging PF Regulation (50% Load):', g('pfreg50'))}
+${row('5.8','Lagging PF Regulation (35% Load):', g('pfreg35'))}
 
 
 ${secHdr('6','Harmonic & K-Factor Analysis')}
