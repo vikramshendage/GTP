@@ -159,7 +159,7 @@ function calculateEfficiency() {
     if (eff100) eff100.value = eff(100) + " %";
     if (eff75) eff75.value = eff(75) + " %";
     if (eff50) eff50.value = eff(50) + " %";
-    if (eff25) eff25.value = eff(25) + " %";
+    if (eff25) eff25.value = eff(35) + " %";
 
     // =====================================
     // OUTPUT 0.8 PF
@@ -173,7 +173,7 @@ function calculateEfficiency() {
     if (pf100Field) pf100Field.value = pfEff(100) + " %";
     if (pf75Field) pf75Field.value = pfEff(75) + " %";
     if (pf50Field) pf50Field.value = pfEff(50) + " %";
-    if (pf25Field) pf25Field.value = pfEff(25) + " %";
+    if (pf25Field) pf25Field.value = pfEff(35) + " %";
 }
 
 // =====================================
